@@ -7,16 +7,11 @@
           term
           const
           
-          product?
-          sum?
-          power?
-          factorial?
-          function?
-          
           order-relation)
 
   (import (rnrs)
-          (xitomatl AS-match))
+          (xitomatl AS-match)
+          (mpl misc))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -61,43 +56,6 @@
         u1 )
       ( ('* . u-elts) 1 )
       ( else 1 )))
-
-  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  (define (product? expr)
-    (match expr
-      ( ('* . elts) #t )
-      ( else        #f )))
-
-  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  (define (sum? expr)
-    (match expr
-      ( ('+ . elts) #t )
-      ( else        #f )))
-
-  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  (define (power? expr)
-    (match expr
-      ( ('^ x y) #t )
-      ( else     #f )))
-
-  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  (define (factorial? expr)
-    (match expr
-      ( ('! n) #t )
-      ( else   #f )))
-
-  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  (define (function? expr)
-    (and (list? expr)
-         (> (length expr) 1)
-         (symbol? (car expr))
-         (not (member (car expr)
-                      '(+ - * / ^ !)))))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

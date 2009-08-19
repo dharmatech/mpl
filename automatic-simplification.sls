@@ -8,8 +8,12 @@
           simplify-difference
 
           ^ * + / - !
+
+
+          simplify-sum-rec
+          merge-sums
           
-          )
+          simplify-factorial)
 
   (import (rename (rnrs)
                   (+ rnrs:+)
@@ -20,9 +24,8 @@
           (only (srfi :1) any)
           
           (xitomatl AS-match)
-
-          (mpl order-relation)
-          )
+          (mpl misc)
+          (mpl order-relation))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -268,15 +271,15 @@
 
     (match elts
 
-      ( (('+ . p-elts) ('+ . q-elts)) ;; SPRD-2-1
+      ( (('+ . p-elts) ('+ . q-elts)) ;; SPRDREC-2-1
 
         (merge-sums p-elts q-elts) )
 
-      ( (('+ . p-elts) u2) ;; SPRD-2-2
+      ( (('+ . p-elts) u2) ;; SPRDREC-2-2
 
         (merge-sums p-elts (list u2)) )
 
-      ( (u1 ('+ . q-elts)) ;; SPRD-2-3
+      ( (u1 ('+ . q-elts)) ;; SPRDREC-2-3
 
         (merge-sums (list u1) q-elts) )
 
@@ -288,21 +291,9 @@
               '()
               (list P))) )
 
-      ( (and (u1 u2) ;; SPRDREC-1-2-a
+      ( (0 u2) (list u2) ) ;; SPRDREC-1-2-a
 
-             (? (lambda (_)
-
-                  (equal? u1 1))))
-
-        (list u2)  )
-
-      ( (and (u1 u2) ;; SPRDREC-1-2-b
-
-             (? (lambda (_)
-
-                  (equal? u2 1))))
-
-        (list u1)  )
+      ( (u1 0) (list u1) ) ;; SPRDREC-1-2-b
 
       ( (and (u1 u2) ;; SPRDREC-1-3
 
@@ -427,9 +418,16 @@
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  (define (simplify-factorial u)
+    (match u
+      ( ('! (? number? n)) (factorial n) )
+      ( ('! n) u )))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   (define (! n)
-    (if (number? n)
-        (factorial n)
-        `(! ,n)))
+    (simplify-factorial `(! ,n)))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   )

@@ -10,6 +10,8 @@
           (mpl automatic-simplification)
           (mpl automatic-simplify)
           (mpl substitute)
+          (mpl monomial)
+          (mpl polynomial)
           )
 
   (define (test)
@@ -145,6 +147,50 @@
                 '(= 2 (+ (* 3 a) b))
                 )
      
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; monomial?
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Example 6.18 - 1"
+                (monomial? (automatic-simplify
+                            (alg "a x^2 y^2"))
+                           '(x y))
+                #t)
+
+    (test-equal "EA: Example 6.18 - 2"
+                (monomial? (automatic-simplify
+                            (alg "x^2 + y^2"))
+                           '(x y))
+                #f)
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; polynomial?
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Example 6.18 - 3"
+                (polynomial? (automatic-simplify
+                              (alg " x^2 + y^2 "))
+                             '(x y))
+                #t)
+
+    (test-equal "EA: Example 6.18 - 4"
+                (polynomial? (automatic-simplify
+                              (alg " sin(x)^2 + 2 sin(x) + 3 "))
+                             (list (alg "sin(x)")))
+                #t)
+
+    (test-equal "EA: Example 6.18 - 5"
+                (polynomial? (automatic-simplify
+                              (alg " x/y + 2 y "))
+                             '(x y))
+                #f)
+
+    (test-equal "EA: Example 6.18 - 5"
+                (polynomial? (automatic-simplify
+                              (alg " (x+1) * (x+3) "))
+                             '(x))
+                #f)
+
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (test-end "mpl")

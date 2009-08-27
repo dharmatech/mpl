@@ -14,6 +14,7 @@
           (mpl monomial)
           (mpl polynomial)
           (mpl variables)
+          (mpl degree)
           )
 
   (define (test)
@@ -240,6 +241,38 @@
                          (alg " sqrt(2) * x^2 + sqrt(3) * x + sqrt(5) ")))
                        '((sqrt 2) (sqrt 3) x (sqrt 5)))
                 #t)
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; degree
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Example 6.22 - 1"
+                (degree
+                 (automatic-simplify
+                  (alg " 3 w x^2 y^3 z^4 "))
+                 '(x z))
+                6)
+
+    (test-equal "EA: Example 6.22 - 2"
+                (degree
+                 (automatic-simplify
+                  (alg " a x^2 + b x + c "))
+                 '(x))
+                2)
+    
+    (test-equal "EA: Example 6.22 - 3"
+                (degree
+                 (automatic-simplify
+                  (alg " a * sin(x)^2 + b * sin(x) + c "))
+                 '((sin x)))
+                2)
+
+    (test-equal "EA: Example 6.22 - 4"
+                (degree
+                 (automatic-simplify
+                  (alg " 2 x^2 y z^3 + w x z^6 "))
+                 '(x z))
+                7)
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

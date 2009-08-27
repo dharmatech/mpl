@@ -4,6 +4,7 @@
   (export test) 
 
   (import (except (rnrs) + - * /)
+          (only (srfi :1) lset=)
           (srfi :64)
           (numero symbolic alg)
           (mpl misc)
@@ -12,6 +13,7 @@
           (mpl substitute)
           (mpl monomial)
           (mpl polynomial)
+          (mpl variables)
           )
 
   (define (test)
@@ -190,6 +192,54 @@
                               (alg " (x+1) * (x+3) "))
                              '(x))
                 #f)
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; variables
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Example 6.20 - 1"
+                (lset= equal?
+                       (variables
+                        (automatic-simplify
+                         (alg " x^3 + 3 x^2 y + 3 x y^2 + y^3 ")))
+                       '(x y))
+                #t)
+
+    (test-equal "EA: Example 6.20 - 2"
+                (lset= equal?
+                       (variables
+                        (automatic-simplify
+                         (alg " 3 x * (x+1) * y^2 * z^n ")))
+                       '((^ z n) y (+ 1 x) x))
+                #t)
+
+    (test-equal "EA: Example 6.20 - 3"
+                (lset= equal?
+                       (variables
+                        (automatic-simplify
+                         (alg " a sin(x)^2 + 2 b sin(x) + 3 c ")))
+                       '(a b (sin x) c))
+                #t)
+
+    (test-equal "EA: Example 6.20 - 3"
+                (lset= equal?
+                       (variables
+                        (automatic-simplify
+                         (alg " a sin(x)^2 + 2 b sin(x) + 3 c ")))
+                       '(a b (sin x) c))
+                #t)
+
+    (test-equal "EA: Example 6.20 - 4"
+                (variables 1/2)
+                '())
+                
+    (test-equal "EA: Example 6.20 - 5"
+                (lset= equal?
+                       (variables
+                        (automatic-simplify
+                         (alg " sqrt(2) * x^2 + sqrt(3) * x + sqrt(5) ")))
+                       '((sqrt 2) (sqrt 3) x (sqrt 5)))
+                #t)
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

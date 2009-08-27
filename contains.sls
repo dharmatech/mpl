@@ -5,6 +5,7 @@
           this-contains?
           contains-this?
           free?
+          is-free?
           free-of?)
 
   (import (rnrs)
@@ -25,6 +26,10 @@
 
   (define (free? u t)
     (not (contains? u t)))
+
+  (define (is-free? u)
+    (lambda (t)
+      (free? u t)))
 
   (define (free-of? t)
     (lambda (u)

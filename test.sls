@@ -15,6 +15,7 @@
           (mpl polynomial)
           (mpl variables)
           (mpl degree)
+          (mpl coefficient-gpe)
           )
 
   (define (test)
@@ -273,6 +274,58 @@
                   (alg " 2 x^2 y z^3 + w x z^6 "))
                  '(x z))
                 7)
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (let ()
+
+      (define (total-degree u)
+        (degree u (variables u)))
+
+      (test-equal "EA: Example 6.25"
+                  (total-degree (automatic-simplify
+                                 (alg " a x^2 + b x + c ")))
+                  3))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; coefficient-gpe
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Example 6.27 - 1"
+
+                (coefficient-gpe (automatic-simplify
+                                  (alg " a x^2 + b x + c "))
+                                 x
+                                 2)
+
+                a)
+
+    (test-equal "EA: Example 6.27 - 2"
+
+                (coefficient-gpe (automatic-simplify
+                                  (alg " 3 x y^2 + 5 x^2 y + 7 x + 9 "))
+                                 x
+                                 1)
+
+                '(+ 7 (* 3 (^ y 2)))
+                )
+
+    (test-equal "EA: Example 6.27 - 3"
+
+                (coefficient-gpe (automatic-simplify
+                                  (alg " 3 x y^2 + 5 x^2 y + 7 x + 9 "))
+                                 x
+                                 3)
+
+                0)
+
+    (test-equal "EA: Example 6.27 - 4"
+
+                (coefficient-gpe (automatic-simplify
+                                  (alg " 3 * sin(x) * x^2 + 2 * ln(x) * x + 4 "))
+                                 x
+                                 2)
+                'undefined)
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

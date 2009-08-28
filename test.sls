@@ -17,6 +17,7 @@
           (mpl degree)
           (mpl coefficient-gpe)
           (mpl leading-coefficient-gpe)
+          (mpl coeff-var-monomial)
           )
 
   (define (test)
@@ -341,6 +342,60 @@
 
                 (automatic-simplify
                  (alg " 5 y + 7 y^3 "))
+
+                )
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; coeff-var-monomial
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "coeff-var-monomial 1"
+
+                (coeff-var-monomial (automatic-simplify
+                                     (alg "3 x y"))
+                                    '(x))
+
+                '((* 3 y) x)
+
+                )
+
+    (test-equal "coeff-var-monomial 2"
+
+                (coeff-var-monomial (automatic-simplify
+                                     (alg "3 x y"))
+                                    '(y))
+
+                '((* 3 x) y)
+
+                )
+
+    (test-equal "coeff-var-monomial 3"
+
+                (coeff-var-monomial (automatic-simplify
+                                     (alg "3 x y"))
+                                    '(x y))
+
+                '(3 (* x y))
+
+                )
+
+    (test-equal "coeff-var-monomial 4"
+
+                (coeff-var-monomial (automatic-simplify
+                                     (alg "3 x y"))
+                                    '(3 x y))
+
+                '(1 (* 3 x y))
+
+                )
+
+    (test-equal "coeff-var-monomial 5"
+
+                (coeff-var-monomial (automatic-simplify
+                                     (alg "3 x y"))
+                                    '())
+
+                '((* 3 x y) 1)
 
                 )
 

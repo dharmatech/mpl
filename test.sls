@@ -16,6 +16,7 @@
           (mpl variables)
           (mpl degree)
           (mpl coefficient-gpe)
+          (mpl leading-coefficient-gpe)
           )
 
   (define (test)
@@ -326,6 +327,22 @@
                                  x
                                  2)
                 'undefined)
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; leading-coefficient-gpe
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: page 233"
+
+                (leading-coefficient-gpe
+                 (automatic-simplify
+                  (alg " 3 x y^2 + 5 x^2 y + 7 x^2 y^3 + 9 "))
+                 x)
+
+                (automatic-simplify
+                 (alg " 5 y + 7 y^3 "))
+
+                )
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

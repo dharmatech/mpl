@@ -18,6 +18,7 @@
           (mpl coefficient-gpe)
           (mpl leading-coefficient-gpe)
           (mpl coeff-var-monomial)
+          (mpl collect-terms)
           )
 
   (define (test)

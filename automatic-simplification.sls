@@ -287,7 +287,7 @@
 
         (let ((P (rnrs:+ u1 u2)))
 
-          (if (= P 1)
+          (if (= P 0)
               '()
               (list P))) )
 

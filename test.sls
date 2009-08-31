@@ -20,6 +20,7 @@
           (mpl leading-coefficient-gpe)
           (mpl coeff-var-monomial)
           (mpl collect-terms)
+          (mpl algebraic-expand)
           )
 
   (define (alge val)
@@ -417,6 +418,30 @@
                                '(x y))
 
                 (alge " (2 a + 3 b) x y + (4 a + 5 b) x ")
+
+                )
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; algebraic-expand
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: page 250 - 1"
+
+                (algebraic-expand (alge " (x+2) * (x+3) * (x+4) "))
+
+                (alge " x^3 + 9 x^2 + 26 x + 24 ")
+
+                )
+
+    (test-equal "EA: page 250 - 2"
+
+                (algebraic-expand (alge " (x+y+z)^3 "))
+
+                (alge " x^3 + y^3 + z^3 +
+                        3 x^2 y + 3 x^2 z +
+                        3 y^2 x + 3 y^2 z +
+                        3 z^2 x + 3 z^2 y +
+                        6 x y z " )
 
                 )
 

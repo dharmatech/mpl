@@ -61,14 +61,7 @@
                
                (lambda (i)
 
-                 (print "T: "
-                        (call-with-values (lambda () (hashtable-entries T))
-                          list)
-                        "\n")
-
                  (let ((f (coeff-var-monomial (list-ref u i) S)))
-
-                   (print "f: " f "\n")
 
                    (let ((j 1)
                          (combined #f))
@@ -94,14 +87,6 @@
                      (if (not combined)
                          
                          (begin
-
-                           (say "N: " N)
-
-                           (print "(hashtable-set! T"
-                                  (+ N 1)
-                                  f
-                                  ")"
-                                  "\n")
 
                            (hashtable-set! T (+ N 1) f)
 

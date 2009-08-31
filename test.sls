@@ -1,13 +1,14 @@
 
 (library (mpl test) 
 
-  (export test) 
+  (export test)
 
   (import (except (rnrs) + - * /)
           (only (srfi :1) lset=)
           (srfi :64)
           (numero symbolic alg)
           (mpl misc)
+          (mpl contains)
           (mpl automatic-simplification)
           (mpl automatic-simplify)
           (mpl substitute)
@@ -20,6 +21,12 @@
           (mpl coeff-var-monomial)
           (mpl collect-terms)
           )
+
+  (define (alge val)
+    (automatic-simplify 
+     (if (string? val)
+         (alg val)
+         val)))
 
   (define (test)
 
@@ -397,6 +404,19 @@
                                     '())
 
                 '((* 3 x y) 1)
+
+                )
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; collect-terms
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Example 6.43"
+
+                (collect-terms (alge " 2 a x y + 3 b x y + 4 a x + 5 b x ")
+                               '(x y))
+
+                (alge " (2 a + 3 b) x y + (4 a + 5 b) x ")
 
                 )
 

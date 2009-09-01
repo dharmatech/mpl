@@ -425,7 +425,7 @@
     ;; algebraic-expand
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    (test-equal "EA: page 250 - 1"
+    (test-equal "EA: 6.34"
 
                 (algebraic-expand (alge " (x+2) * (x+3) * (x+4) "))
 
@@ -433,7 +433,7 @@
 
                 )
 
-    (test-equal "EA: page 250 - 2"
+    (test-equal "EA: 6.35"
 
                 (algebraic-expand (alge " (x+y+z)^3 "))
 
@@ -442,6 +442,22 @@
                         3 y^2 x + 3 y^2 z +
                         3 z^2 x + 3 z^2 y +
                         6 x y z " )
+
+                )
+
+    (test-equal "EA: 6.36"
+
+                (algebraic-expand (alge " (x+1)^2 + (y+1)^2 "))
+
+                (alge " x^2 + 2 x + y^2 + 2 y + 2 ")
+
+                )
+
+    (test-equal "EA: 6.37"
+
+                (algebraic-expand (alge " ((x+2)^2 +3)^2 "))
+
+                (alge " x^4 + 8 x^3 + 30 x^2 + 56 x + 49 ")
 
                 )
 

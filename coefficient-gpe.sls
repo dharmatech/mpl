@@ -5,7 +5,7 @@
           coefficient-monomial-gpe
           )
 
-  (import (except (rnrs) + / ^)
+  (import (except (rnrs) + /)
           (mpl misc)
           (only (mpl automatic-simplification) + / ^)
           (mpl contains)

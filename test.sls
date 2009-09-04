@@ -3,7 +3,7 @@
 
   (export test)
 
-  (import (except (rnrs) + - * /)
+  (import (except (rnrs) + - * / numerator denominator)
           (only (srfi :1) lset=)
           (srfi :64)
           ;; (numero symbolic alg)
@@ -22,6 +22,8 @@
           (mpl coeff-var-monomial)
           (mpl collect-terms)
           (mpl algebraic-expand)
+          (mpl numerator)
+          (mpl denominator)
           )
 
   (define (alge val)

@@ -1,9 +1,9 @@
 
-(library (mpl monomial)
+(library (mpl monomial-gpe)
 
-  (export monomial?
-          monomial-in?
-          is-monomial?)
+  (export monomial-gpe?
+          monomial-gpe-in?
+          is-monomial-gpe?)
 
   (import (rnrs)
           (only (srfi :1) every)
@@ -11,7 +11,7 @@
           (mpl contains)
           )
 
-  (define (monomial? u v)
+  (define (monomial-gpe? u v)
 
     (or (every (is-free? u) v) ;; GME-1
 
@@ -23,17 +23,16 @@
                (> n 1))) 
 
         (and (product? u) ;; GME-4
-             (every (monomial-in? v) (cdr u))))) 
+             (every (monomial-gpe-in? v) (cdr u))))) 
 
-  (define (monomial-in? v)
+  (define (monomial-gpe-in? v)
     (lambda (u)
-      (monomial? u v)))
+      (monomial-gpe? u v)))
 
-  (define (is-monomial? u)
+  (define (is-monomial-gpe? u)
     (lambda (v)
-      (monomial? u v)))
+      (monomial-gpe? u v)))
 
   )
 
 
-  

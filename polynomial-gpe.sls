@@ -8,12 +8,12 @@
   (import (rnrs)
           (only (srfi :1) every)
           (mpl misc)
-          (mpl monomial))
+          (mpl monomial-gpe))
   
   (define (polynomial-gpe? u v)
-    (or (monomial? u v)
+    (or (monomial-gpe? u v)
         (and (sum? u)
-             (every (monomial-in? v) (cdr u)))))
+             (every (monomial-gpe-in? v) (cdr u)))))
 
   (define (polynomial-gpe-in? v)
     (lambda (u)

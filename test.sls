@@ -13,7 +13,7 @@
           (mpl automatic-simplification)
           (mpl automatic-simplify)
           (mpl substitute)
-          (mpl monomial)
+          (mpl monomial-gpe)
           (mpl polynomial-gpe)
           (mpl variables)
           (mpl degree)
@@ -166,17 +166,17 @@
                 )
      
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; monomial?
+    ;; monomial-gpe?
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (test-equal "EA: Example 6.18 - 1"
-                (monomial? (automatic-simplify
+                (monomial-gpe? (automatic-simplify
                             (alg "a x^2 y^2"))
                            '(x y))
                 #t)
 
     (test-equal "EA: Example 6.18 - 2"
-                (monomial? (automatic-simplify
+                (monomial-gpe? (automatic-simplify
                             (alg "x^2 + y^2"))
                            '(x y))
                 #f)

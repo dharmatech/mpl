@@ -14,7 +14,7 @@
           (mpl automatic-simplify)
           (mpl substitute)
           (mpl monomial)
-          (mpl polynomial)
+          (mpl polynomial-gpe)
           (mpl variables)
           (mpl degree)
           (mpl coefficient-gpe)
@@ -182,31 +182,31 @@
                 #f)
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; polynomial?
+    ;; polynomial-gpe?
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (test-equal "EA: Example 6.18 - 3"
-                (polynomial? (automatic-simplify
-                              (alg " x^2 + y^2 "))
-                             '(x y))
+                (polynomial-gpe? (automatic-simplify
+                                  (alg " x^2 + y^2 "))
+                                 '(x y))
                 #t)
 
     (test-equal "EA: Example 6.18 - 4"
-                (polynomial? (automatic-simplify
-                              (alg " sin(x)^2 + 2 sin(x) + 3 "))
-                             (list (alg "sin(x)")))
+                (polynomial-gpe? (automatic-simplify
+                                  (alg " sin(x)^2 + 2 sin(x) + 3 "))
+                                 (list (alg "sin(x)")))
                 #t)
 
     (test-equal "EA: Example 6.18 - 5"
-                (polynomial? (automatic-simplify
-                              (alg " x/y + 2 y "))
-                             '(x y))
+                (polynomial-gpe? (automatic-simplify
+                                  (alg " x/y + 2 y "))
+                                 '(x y))
                 #f)
 
     (test-equal "EA: Example 6.18 - 5"
-                (polynomial? (automatic-simplify
-                              (alg " (x+1) * (x+3) "))
-                             '(x))
+                (polynomial-gpe? (automatic-simplify
+                                  (alg " (x+1) * (x+3) "))
+                                 '(x))
                 #f)
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

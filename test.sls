@@ -27,6 +27,7 @@
           (mpl denominator)
           (mpl rational-gre)
           (mpl rational-variables)
+          (mpl rationalize-expression)
           )
 
   ;; (define (alge val)
@@ -515,6 +516,31 @@
                  (rational-variables (alge " 1/x + 1/y "))
 
                  (list (alge "1/y") (alge "1/x")))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; rationalize-expression
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: page 266 - 1"
+                 
+                (rationalize-expression (alge " (1 + 1/x)^2 "))
+
+                (alge " (x+1)^2 / x^2 "))
+
+    (test-equal "EA: page 266 - 1"
+                 
+                (rationalize-expression (alge " (1 + 1/x)^(1/2) "))
+
+                (alge " ( (x+1)/x ) ^ (1/2) "))
+
+    (test-equal "EA: Example 6.59"
+
+                (rationalize-expression
+                 (alge " 1 / (1+1/x)^(1/2) + (1+1/x)^(3/2) "))
+
+                (alge " ( x^2 + (x+1)^2 ) / ( x^2 * ( (x+1) / x ) ^ (1/2) ) ")
+
+                )
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

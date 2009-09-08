@@ -16,7 +16,7 @@
           (mpl monomial-gpe)
           (mpl polynomial-gpe)
           (mpl variables)
-          (mpl degree)
+          (mpl degree-gpe)
           (mpl coefficient-gpe)
           (mpl leading-coefficient-gpe)
           (mpl coeff-var-monomial)
@@ -258,32 +258,32 @@
                 #t)
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; degree
+    ;; degree-gpe
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (test-equal "EA: Example 6.22 - 1"
-                (degree
+                (degree-gpe
                  (automatic-simplify
                   (alg " 3 w x^2 y^3 z^4 "))
                  '(x z))
                 6)
 
     (test-equal "EA: Example 6.22 - 2"
-                (degree
+                (degree-gpe
                  (automatic-simplify
                   (alg " a x^2 + b x + c "))
                  '(x))
                 2)
     
     (test-equal "EA: Example 6.22 - 3"
-                (degree
+                (degree-gpe
                  (automatic-simplify
                   (alg " a * sin(x)^2 + b * sin(x) + c "))
                  '((sin x)))
                 2)
 
     (test-equal "EA: Example 6.22 - 4"
-                (degree
+                (degree-gpe
                  (automatic-simplify
                   (alg " 2 x^2 y z^3 + w x z^6 "))
                  '(x z))
@@ -294,7 +294,7 @@
     (let ()
 
       (define (total-degree u)
-        (degree u (variables u)))
+        (degree-gpe u (variables u)))
 
       (test-equal "EA: Example 6.25"
                   (total-degree (automatic-simplify

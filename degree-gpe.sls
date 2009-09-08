@@ -1,7 +1,7 @@
 
-(library (mpl degree) 
+(library (mpl degree-gpe) 
 
-  (export degree) 
+  (export degree-gpe) 
 
   (import (rnrs)
           (only (srfi :1) every)
@@ -9,7 +9,7 @@
           (mpl contains)
           )
 
-  (define (degree-monomial u v)
+  (define (degree-monomial-gpe u v)
 
     (cond ( (every (is-free? u) v) 0 )
 
@@ -26,20 +26,20 @@
             (apply +
                    (map
                     (lambda (elt)
-                      (degree-monomial elt v))
+                      (degree-monomial-gpe elt v))
                     (cdr u))) )
 
           ( else 0 )))
 
-  (define (degree u v)
+  (define (degree-gpe u v)
 
     (cond ( (sum? u)
             (apply max
                    (map
                     (lambda (elt)
-                      (degree-monomial elt v))
+                      (degree-monomial-gpe elt v))
                     (cdr u))) )
 
-          ( else (degree-monomial u v) )))
+          ( else (degree-monomial-gpe u v) )))
 
   )

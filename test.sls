@@ -12,6 +12,7 @@
           (mpl contains)
           (mpl automatic-simplification)
           (mpl automatic-simplify)
+          (mpl alge)
           (mpl substitute)
           (mpl monomial-gpe)
           (mpl polynomial-gpe)
@@ -25,7 +26,7 @@
           (mpl numerator)
           (mpl denominator)
           (mpl rational-gre)
-          (mpl alge)
+          (mpl rational-variables)
           )
 
   ;; (define (alge val)
@@ -487,17 +488,33 @@
     ;; rational-gre?
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    (test-equal? "EA: Example 6.54 - 1"
+    (test-equal "EA: Example 6.54 - 1"
 
                  (rational-gre? (alge " (x^2 + 1) / (2 x + 3) ") '(x))
 
-                 #t)
+                 '(x))
 
-    (test-equal? "EA: Example 6.54 - 2"
+    (test-equal "EA: Example 6.54 - 2"
 
                  (rational-gre? (alge " 1/x + 1/y ") '(x y))
 
                  #f)
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; rational-variables
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Example 6.56 - 1"
+
+                 (rational-variables (alge " (2 x + 3 y) / (z + 4) "))
+
+                 '(z y x))
+
+    (test-equal "EA: Example 6.56 - 2"
+
+                 (rational-variables (alge " 1/x + 1/y "))
+
+                 (list (alge "1/y") (alge "1/x")))
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

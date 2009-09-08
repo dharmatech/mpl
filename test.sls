@@ -28,6 +28,7 @@
           (mpl rational-gre)
           (mpl rational-variables)
           (mpl rationalize-expression)
+          (mpl rational-expand)
           )
 
   ;; (define (alge val)
@@ -539,6 +540,35 @@
                  (alge " 1 / (1+1/x)^(1/2) + (1+1/x)^(3/2) "))
 
                 (alge " ( x^2 + (x+1)^2 ) / ( x^2 * ( (x+1) / x ) ^ (1/2) ) ")
+
+                )
+
+    (test-equal "EA: Example 6.60"
+
+                (rationalize-expression (alge " a + b/2 "))
+
+                (alge " (2 a + b)/2 ")
+
+                )
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; rational-expand
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Example 6.62"
+    
+                (rational-expand
+                 (alge
+                  " ( ( ( 1 / ( (x+y)^2 + 1 ) ) ^ (1/2) + 1 )
+                      *
+                      ( ( 1 / ( (x+y)^2 + 1 ) ) ^ (1/2) - 1 ) )
+                    /
+                    (x+1) "))
+
+                (alge
+                 " ( - x^2 - 2 x y - y^2 )
+                   /
+                   ( x^3 + x^2 + 2 x^2 y + 2 x y + x y^2 + y^2 + x + 1 ) ")
 
                 )
 

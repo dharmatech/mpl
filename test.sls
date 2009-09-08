@@ -24,13 +24,15 @@
           (mpl algebraic-expand)
           (mpl numerator)
           (mpl denominator)
+          (mpl rational-gre)
+          (mpl alge)
           )
 
-  (define (alge val)
-    (automatic-simplify 
-     (if (string? val)
-         (alg val)
-         val)))
+  ;; (define (alge val)
+  ;;   (automatic-simplify 
+  ;;    (if (string? val)
+  ;;        (alg val)
+  ;;        val)))
 
   (define (test)
 
@@ -480,6 +482,22 @@
                 (denominator (alge " 2/3 * (x*(x+1)) / (x+2) * y^n "))
 
                 (alge " 3 * ( x + 2 ) "))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; rational-gre?
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal? "EA: Example 6.54 - 1"
+
+                 (rational-gre? (alge " (x^2 + 1) / (2 x + 3) ") '(x))
+
+                 #t)
+
+    (test-equal? "EA: Example 6.54 - 2"
+
+                 (rational-gre? (alge " 1/x + 1/y ") '(x y))
+
+                 #f)
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

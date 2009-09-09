@@ -3,7 +3,7 @@
 
   (export rational-variables)
 
-  (import (except (rnrs) numerator denominator)
+  (import (except (rnrs) numerator denominator exp)
           (only (srfi :1) lset-union)
           (mpl variables)
           (mpl numerator)

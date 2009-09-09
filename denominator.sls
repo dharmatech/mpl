@@ -3,7 +3,7 @@
 
   (export denominator)
 
-  (import (except (rename (rnrs) (denominator rnrs:denominator)) + - * /)
+  (import (except (rename (rnrs) (denominator rnrs:denominator)) + - * / exp)
           (xitomatl AS-match)
           (mpl automatic-simplification))
 

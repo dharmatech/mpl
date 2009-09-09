@@ -2,7 +2,9 @@
 (library (mpl misc)
 
   (export product? quotient? sum? difference? power? factorial? function?
-          vars)
+          exp?
+          vars
+          )
 
   (import (rnrs)
           (xitomatl AS-match))
@@ -48,6 +50,13 @@
     (match expr
       ( ('! n) #t )
       ( else   #f )))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define (exp? expr)
+    (match expr
+      ( ('exp n) #t )
+      ( else     #f )))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

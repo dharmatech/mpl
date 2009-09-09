@@ -7,7 +7,7 @@
           simplify-quotient
           simplify-difference
 
-          ^ * + / - !
+          ^ * + / - ! exp
 
 
           simplify-sum-rec
@@ -19,7 +19,8 @@
                   (+ rnrs:+)
                   (- rnrs:-)
                   (* rnrs:*)
-                  (/ rnrs:/))
+                  (/ rnrs:/)
+                  (exp rnrs:exp))
 
           (only (srfi :1) any)
           
@@ -427,6 +428,13 @@
 
   (define (! n)
     (simplify-factorial `(! ,n)))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define (exp u)
+    (if (number? u)
+        (rnrs:exp u)
+        `(exp ,u)))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

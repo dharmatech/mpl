@@ -3,7 +3,7 @@
 
   (export test)
 
-  (import (except (rnrs) + - * / numerator denominator)
+  (import (except (rnrs) + - * / exp numerator denominator)
           (only (srfi :1) lset=)
           (srfi :64)
           ;; (numero symbolic alg)
@@ -29,6 +29,7 @@
           (mpl rational-variables)
           (mpl rationalize-expression)
           (mpl rational-expand)
+          (mpl expand-exp)
           )
 
   ;; (define (alge val)
@@ -581,6 +582,28 @@
        " 1 / ( 1/a + c / (a b) ) + ( a b c + a c^2 ) / (b+c)^2 - a "))
 
      0)
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; expand-exp
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: expression 7.1"
+
+                (expand-exp (alge " exp( 2 x + y "))
+
+                (alge " exp(x)^2 exp(y) "))
+
+    (test-equal "EA: Example 7.2"
+
+                (expand-exp (alge " exp( 2 w x + 3 y z "))
+
+                (alge " exp( w x )^2 exp( y z )^3 "))
+
+    (test-equal "EA: Example 7.2"
+
+                (expand-exp (alge " exp( 2 * (x + y) ) "))
+
+                (alge " exp(x)^2 exp(y)^2 "))
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

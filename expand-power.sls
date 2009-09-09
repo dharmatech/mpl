@@ -3,7 +3,7 @@
 
   (export expand-power)
 
-  (import (except (rnrs) + - * /)
+  (import (except (rnrs) + - * / exp)
           (mpl misc)
           (mpl automatic-simplification)
           (mpl expand-product)

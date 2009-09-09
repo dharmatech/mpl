@@ -3,7 +3,7 @@
 
   (export rational-expand)
 
-  (import (except (rnrs) + - * / numerator denominator)
+  (import (except (rnrs) + - * / numerator denominator exp)
           (mpl automatic-simplification)
           (mpl algebraic-expand)
           (mpl numerator)

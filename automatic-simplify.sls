@@ -6,7 +6,7 @@
   (import (rnrs)
           (mpl misc)
           (except (mpl automatic-simplification)
-                  + - * /)
+                  + - * / exp)
           )
 
   (define (automatic-simplify u)

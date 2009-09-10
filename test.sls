@@ -30,6 +30,7 @@
           (mpl rationalize-expression)
           (mpl rational-expand)
           (mpl expand-exp)
+          (mpl expand-trig)
           )
 
   ;; (define (alge val)
@@ -599,12 +600,49 @@
 
                 (alge " exp( w x )^2 exp( y z )^3 "))
 
-    (test-equal "EA: Example 7.2"
+    (test-equal "EA: Example 7.3"
 
                 (expand-exp (alge " exp( 2 * (x + y) ) "))
 
                 (alge " exp(x)^2 exp(y)^2 "))
 
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; expand-trig
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Expression 7.11"
+
+                (expand-trig (alge " sin(x+y) "))
+
+                (alge " sin(x) * cos(y) + cos(x) * sin(y) "))
+
+    (test-equal "EA: Expression 7.12"
+
+                (expand-trig (alge " cos(x+y) "))
+
+                (alge " cos(x) * cos(y) - sin(x) * sin(y) "))
+
+    (test-equal "EA: Example 7.5"
+
+                (expand-trig (alge " sin(2x + 3y) "))
+
+                (alge " 2 * sin(x) * cos(x) * ( cos(y)^3 - 3 * cos(y) * sin(y)^2 )
+                        +
+                        ( cos(x)^2 - sin(x)^2 ) * ( 3 cos(y)^2 sin(y) - sin(y)^3 ) "))
+
+    (test-equal "EA: Example 7.6"
+    
+                (expand-trig (alge " sin( 2 * (x+y) ) "))
+
+                (alge " 2 * ( sin(x) * cos(y) + cos(x) * sin(y) ) *
+                        ( cos(x) * cos(y) - sin(x) * sin(y) ) "))
+
+    (test-equal "EA: Expression 7.18"
+    
+                (expand-trig (alge " cos(5x) "))
+
+                (alge "cos(x)^5 - 10 * cos(x)^3 * sin(x)^2 + 5 * cos(x) * sin(x)^4"))
+    
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (test-end "mpl")

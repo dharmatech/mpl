@@ -3,10 +3,9 @@
 
   (export automatic-simplify)
 
-  (import (rnrs)
+  (import (except (rnrs) + - * / exp sin cos)
           (mpl misc)
-          (except (mpl automatic-simplification)
-                  + - * / exp)
+          (mpl automatic-simplification)
           )
 
   (define (automatic-simplify u)

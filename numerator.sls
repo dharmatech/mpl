@@ -3,7 +3,7 @@
 
   (export numerator)
 
-  (import (except (rename (rnrs) (numerator rnrs:numerator)) + - * / exp)
+  (import (except (rename (rnrs) (numerator rnrs:numerator)) + - * / exp sin cos)
           (xitomatl AS-match)
           (mpl automatic-simplification))
 

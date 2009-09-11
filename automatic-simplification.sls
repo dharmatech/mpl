@@ -7,8 +7,7 @@
           simplify-quotient
           simplify-difference
 
-          ^ * + / - ! exp
-
+          ^ * + / - ! exp sin cos
 
           simplify-sum-rec
           merge-sums
@@ -20,7 +19,9 @@
                   (- rnrs:-)
                   (* rnrs:*)
                   (/ rnrs:/)
-                  (exp rnrs:exp))
+                  (exp rnrs:exp)
+                  (sin rnrs:sin)
+                  (cos rnrs:cos))
 
           (only (srfi :1) any)
           
@@ -435,6 +436,16 @@
     (if (number? u)
         (rnrs:exp u)
         `(exp ,u)))
+
+  (define (sin u)
+    (if (number? u)
+        (rnrs:sin u)
+        `(sin ,u)))
+
+  (define (cos u)
+    (if (number? u)
+        (rnrs:cos u)
+        `(cos ,u)))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

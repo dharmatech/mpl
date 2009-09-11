@@ -3,7 +3,7 @@
 
   (export test)
 
-  (import (except (rnrs) + - * / exp numerator denominator)
+  (import (except (rnrs) + - * / exp sin cos numerator denominator)
           (only (srfi :1) lset=)
           (srfi :64)
           ;; (numero symbolic alg)

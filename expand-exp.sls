@@ -3,9 +3,8 @@
 
   (export expand-exp)
 
-  (import (except (rnrs) + - * / exp)
-          (mpl misc)
-          (mpl automatic-simplification))
+  (import (mpl rnrs)
+          (mpl misc))
   
   (define (expand-exp-rules A)
     (cond ( (sum? A)

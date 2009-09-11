@@ -3,9 +3,8 @@
 
   (export algebraic-expand)
 
-  (import (except (rnrs) + - * / exp)
+  (import (mpl rnrs)
           (mpl misc)
-          (mpl automatic-simplification)
           (mpl expand-product)
           (mpl expand-power)
           )

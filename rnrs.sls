@@ -3,6 +3,10 @@
 
   (export
 
+   ;; (mpl automatic-simplification)
+   
+   ^ * + / - ! exp sin cos
+
    #; (rnrs base (6))
    define define-syntax
    quote lambda if set! cond case and or
@@ -22,12 +26,15 @@
    = < > <= >=
    zero? positive? negative? odd? even?
    finite? infinite? nan?
-   max min + * - / abs
+   max min abs
    div-and-mod div mod div0-and-mod0 div0 mod0
    gcd lcm numerator denominator
    floor ceiling truncate round
    rationalize
-   exp log sin cos tan asin acos atan
+   log
+   ;; sin
+   ;; cos
+   tan asin acos atan
    sqrt
    exact-integer-sqrt
    expt
@@ -428,9 +435,8 @@
    hashtable-mutable?
    equal-hash string-hash string-ci-hash symbol-hash)
 
-  (import (except (rnrs) + - * / exp)
-          (mpl automatic-simplification)
-          )
+  (import (except (rnrs) + - * / exp sin cos)
+          (mpl automatic-simplification))
 
   )
   

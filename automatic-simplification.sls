@@ -59,7 +59,7 @@
 
     (match u
 
-      ( ('^ 0 (? number? w)) (expt u w) ) ;; SPOW-2
+      ( ('^ 0 (? number? w)) (expt 0 w) ) ;; SPOW-2
 
       ( ('^ 1 w) 1 ) ;; SPOW-3
 

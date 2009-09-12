@@ -590,7 +590,7 @@
 
     (test-equal "EA: expression 7.1"
 
-                (expand-exp (alge " exp( 2 x + y "))
+                (expand-exp (alge " exp( 2 x + y ) "))
 
                 (alge " exp(x)^2 exp(y) "))
 

@@ -23,6 +23,7 @@
           (mpl coeff-var-monomial)
           (mpl collect-terms)
           (mpl algebraic-expand)
+          (mpl expand-main-op)
           (mpl numerator)
           (mpl denominator)
           (mpl rational-gre)
@@ -468,6 +469,26 @@
                 (algebraic-expand (alge " ((x+2)^2 +3)^2 "))
 
                 (alge " x^4 + 8 x^3 + 30 x^2 + 56 x + 49 ")
+
+                )
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; expand-main-op
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: section 6.4 exercise 6 - a"
+
+                (expand-main-op (alge " x * (2 + (1 + x)^2) "))
+
+                (alge " 2*x + x*(1+x)^2 ")
+
+                )
+
+    (test-equal "EA: section 6.4 exercise 6 - b"
+
+                (expand-main-op (alge " ( x + (1+x)^2 )^2 "))
+
+                (alge " x^2 + 2*x*(1+x)^2 + (1+x)^4 ")
 
                 )
 

@@ -32,6 +32,7 @@
           (mpl rational-expand)
           (mpl expand-exp)
           (mpl expand-trig)
+          (mpl contract-exp)
           )
 
   ;; (define (alge val)
@@ -663,6 +664,28 @@
                 (expand-trig (alge " cos(5x) "))
 
                 (alge "cos(x)^5 - 10 * cos(x)^3 * sin(x)^2 + 5 * cos(x) * sin(x)^4"))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; contract-exp
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Expression 7.27"
+
+                (contract-exp (alge " exp(u) * exp(v) "))
+
+                (alge " exp(u+v) "))
+
+    (test-equal "EA: Expression 7.28"
+
+                (contract-exp (alge " exp(u)^w "))
+
+                (alge " exp(w*u) "))
+
+    (test-equal "EA: Example 7.9 "
+
+                (contract-exp (alge " exp(x) * ( exp(x) + exp(y) ) "))
+
+                (alge " exp(2*x) + exp(x+y) "))
     
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

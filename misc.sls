@@ -3,6 +3,8 @@
 
   (export product? quotient? sum? difference? power? factorial? function?
           exp?
+          sin?
+          cos?
           vars
           base
           exponent
@@ -59,6 +61,16 @@
     (match expr
       ( ('exp n) #t )
       ( else     #f )))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define (sin? expr)
+    (and (pair? expr)
+         (eq? (car expr) 'sin)))
+
+  (define (cos? expr)
+    (and (pair? expr)
+         (eq? (car expr) 'cos)))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

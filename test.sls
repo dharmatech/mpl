@@ -33,6 +33,7 @@
           (mpl expand-exp)
           (mpl expand-trig)
           (mpl contract-exp)
+          (mpl separate-sin-cos)
           )
 
   ;; (define (alge val)

@@ -34,6 +34,7 @@
           (mpl expand-trig)
           (mpl contract-exp)
           (mpl separate-sin-cos)
+          (mpl contract-trig)
           )
 
   ;; (define (alge val)
@@ -687,6 +688,26 @@
                 (contract-exp (alge " exp(x) * ( exp(x) + exp(y) ) "))
 
                 (alge " exp(2*x) + exp(x+y) "))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Expression 7.30"
+
+                (contract-trig (alge " sin(x) * sin(y) "))
+
+                (alge " cos(x-y)/2 - cos(x+y)/2 "))
+
+    (test-equal "EA: Expression 7.31"
+
+                (contract-trig (alge " cos(x) * cos(y) "))
+
+                (alge " cos(x+y)/2 + cos(x-y)/2 "))
+
+    (test-equal "EA: Expression 7.32"
+
+                (contract-trig (alge " sin(x) * cos(y) "))
+
+                (alge " sin(x+y)/2 + sin(x-y)/2 "))
     
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

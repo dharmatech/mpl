@@ -1,7 +1,11 @@
 
 (library (mpl contract-trig)
 
-  (export contract-trig)
+  (export contract-trig
+          contract-trig-rules
+          contract-trig-power
+          contract-trig-product
+          )
 
   (import (except (rnrs) + - * / sin cos exp)
           (mpl misc)
@@ -31,6 +35,92 @@
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  ;; (define (contract-trig-power u)
+
+  ;;   (cond ( (and (cos?      (base u))
+  ;;                (integer?  (exponent u))
+  ;;                (positive? (exponent u))
+  ;;                (even?     (exponent u)))
+
+  ;;           (let ((x (list-ref (base u) 1))
+  ;;                 (n (exponent u)))
+
+  ;;             (+ (/ (binomial-coefficient n (/ n 2))
+  ;;                   (^ 2 n))
+
+  ;;                (* (/ 1 (^ 2 (- n 1)))
+
+  ;;                   (sigma (lambda (j)
+  ;;                            (* (binomial-coefficient n j)
+  ;;                               (cos (* (- n (* 2 j)) x))))
+  ;;                          0
+  ;;                          (- (/ n 2) 1)
+  ;;                          1)))) )
+
+  ;;         ( (and (cos?      (base u))
+  ;;                (integer?  (exponent u))
+  ;;                (positive? (exponent u))
+  ;;                (odd?      (exponent u)))
+
+  ;;           (let ((x (list-ref (base u) 1))
+  ;;                 (n (exponent u)))
+
+  ;;             (* (/ 1 (^ 2 (- n 1)))
+
+  ;;                (sigma (lambda (j)
+  ;;                         (* (binomial-coefficient n j)
+  ;;                            (cos (* (- n (* 2 j)) x))))
+  ;;                       0
+  ;;                       (floor (/ n 2))
+  ;;                       1))) )
+
+  ;;         ( (and (sin?      (base u))
+  ;;                (integer?  (exponent u))
+  ;;                (positive? (exponent u))
+  ;;                (even?     (exponent u)))
+
+  ;;           (let ((x (list-ref (base u) 1))
+  ;;                 (n (exponent u)))
+
+  ;;             (+ (/ (* (^ -1 n)
+  ;;                      (binomial-coefficient n (/ n 2)))
+  ;;                   (^ 2 n))
+
+  ;;                (* (/ (^ -1 (/ n 2))
+  ;;                      (^ 2 (- n 1)))
+
+  ;;                   (sigma (lambda (j)
+  ;;                            (* (^ -1 j)
+  ;;                               (binomial-coefficient n j)
+  ;;                               (cos (* (- n (* 2 j)) x))))
+  ;;                          0
+  ;;                          (- (/ n 2) 1)
+  ;;                          1)))) )
+
+  ;;         ( (and (sin?      (base u))
+  ;;                (integer?  (exponent u))
+  ;;                (positive? (exponent u))
+  ;;                (odd?      (exponent u)))
+
+  ;;           (let ((x (list-ref (base u) 1))
+  ;;                 (n (exponent u)))
+
+  ;;             (* (/ (^ -1 (/ (- n 1) 2))
+  ;;                   (^ 2 (- n 1)))
+
+  ;;                (sigma (lambda (j)
+  ;;                         (* (binomial-coefficient n j)
+  ;;                            (^ -1 j)
+  ;;                            (sin (* (- n (* 2 j)) x))))
+  ;;                       0
+  ;;                       (floor (/ n 2))))) )
+
+  ;;         (else u)
+
+  ;;         ))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   (define (contract-trig-power u)
 
     (cond ( (and (cos?      (base u))
@@ -41,17 +131,19 @@
             (let ((x (list-ref (base u) 1))
                   (n (exponent u)))
 
-              (+ (/ (binomial-coefficient n (/ n 2))
-                    (^ 2 n))
+              (contract-trig-rules
 
-                 (* (/ 1 (^ 2 (- n 1)))
+               (+ (/ (binomial-coefficient n (/ n 2))
+                     (^ 2 n))
 
-                    (sigma (lambda (j)
-                             (* (binomial-coefficient n j)
-                                (cos (* (- n (* 2 j)) x))))
-                           0
-                           (- (/ n 2) 1)
-                           1)))) )
+                  (* (/ 1 (^ 2 (- n 1)))
+
+                     (sigma (lambda (j)
+                              (* (binomial-coefficient n j)
+                                 (cos (* (- n (* 2 j)) x))))
+                            0
+                            (- (/ n 2) 1)
+                            1))))) )
 
           ( (and (cos?      (base u))
                  (integer?  (exponent u))
@@ -61,14 +153,16 @@
             (let ((x (list-ref (base u) 1))
                   (n (exponent u)))
 
-              (* (/ 1 (^ 2 (- n 1)))
+              (contract-trig-rules
 
-                 (sigma (lambda (j)
-                          (* (binomial-coefficient n j)
-                             (cos (* (- n (* 2 j)) x))))
-                        0
-                        (floor (/ n 2))
-                        1))) )
+               (* (/ 1 (^ 2 (- n 1)))
+
+                  (sigma (lambda (j)
+                           (* (binomial-coefficient n j)
+                              (cos (* (- n (* 2 j)) x))))
+                         0
+                         (floor (/ n 2))
+                         1)))) )
 
           ( (and (sin?      (base u))
                  (integer?  (exponent u))
@@ -78,20 +172,22 @@
             (let ((x (list-ref (base u) 1))
                   (n (exponent u)))
 
-              (+ (/ (* (^ -1 n)
-                       (binomial-coefficient n (/ n 2)))
-                    (^ 2 n))
+              (contract-trig-rules
+               
+               (+ (/ (* (^ -1 n)
+                        (binomial-coefficient n (/ n 2)))
+                     (^ 2 n))
 
-                 (* (/ (^ -1 (/ n 2))
-                       (^ 2 (- n 1)))
+                  (* (/ (^ -1 (/ n 2))
+                        (^ 2 (- n 1)))
 
-                    (sigma (lambda (j)
-                             (* (^ -1 j)
-                                (binomial-coefficient n j)
-                                (cos (* (- n (* 2 j)) x))))
-                           0
-                           (- (/ n 2) 1)
-                           1)))) )
+                     (sigma (lambda (j)
+                              (* (^ -1 j)
+                                 (binomial-coefficient n j)
+                                 (cos (* (- n (* 2 j)) x))))
+                            0
+                            (- (/ n 2) 1)
+                            1))))) )
 
           ( (and (sin?      (base u))
                  (integer?  (exponent u))
@@ -101,15 +197,17 @@
             (let ((x (list-ref (base u) 1))
                   (n (exponent u)))
 
-              (* (/ (^ -1 (/ (- n 1) 2))
-                    (^ 2 (- n 1)))
+              (contract-trig-rules
+
+               (* (/ (^ -1 (/ (- n 1) 2))
+                     (^ 2 (- n 1)))
 
                  (sigma (lambda (j)
                           (* (binomial-coefficient n j)
                              (^ -1 j)
                              (sin (* (- n (* 2 j)) x))))
                         0
-                        (floor (/ n 2))))) )
+                        (floor (/ n 2)))))) )
 
           (else u)
 

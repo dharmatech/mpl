@@ -9,13 +9,13 @@
   
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  (define (sin? u)
-    (and (pair? u)
-         (eq? (car u) 'sin)))
+  ;; (define (sin? u)
+  ;;   (and (pair? u)
+  ;;        (eq? (car u) 'sin)))
 
-  (define (cos? u)
-    (and (pair? u)
-         (eq? (car u) 'cos)))
+  ;; (define (cos? u)
+  ;;   (and (pair? u)
+  ;;        (eq? (car u) 'cos)))
 
   (define (sin-or-cos? u)
     (or (sin? u)

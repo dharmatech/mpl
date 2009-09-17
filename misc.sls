@@ -4,6 +4,8 @@
   (export product? quotient? sum? difference? power? factorial? function?
           exp?
           vars
+          base
+          exponent
           )
 
   (import (rnrs)
@@ -66,6 +68,18 @@
          (symbol? (car expr))
          (not (member (car expr)
                       '(+ - * / ^ !)))))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define (base expr)
+    (if (power? expr)
+        (list-ref expr 1)
+        expr))
+
+  (define (exponent expr)
+    (if (power? expr)
+        (list-ref expr 2)
+        1))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

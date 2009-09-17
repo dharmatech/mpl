@@ -11,7 +11,7 @@
 
   (import (rnrs)
           (xitomatl AS-match)
-          (mpl misc))
+          (except (mpl misc) base exponent))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

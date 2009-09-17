@@ -26,7 +26,7 @@
           (only (srfi :1) any)
           
           (xitomatl AS-match)
-          (mpl misc)
+          (except (mpl misc) base exponent)
           (mpl order-relation))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -11,11 +11,11 @@
           (mpl contains)
           )
 
-  (define (base u)
-    (list-ref u 1))
+  ;; (define (base u)
+  ;;   (list-ref u 1))
 
-  (define (exponent u)
-    (list-ref u 2))
+  ;; (define (exponent u)
+  ;;   (list-ref u 2))
 
   (define undefined 'undefined)
 

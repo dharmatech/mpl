@@ -11,6 +11,8 @@
           (mpl misc)
           (mpl contains)
           (mpl automatic-simplification)
+          (mpl sin)
+          (mpl cos)
           (mpl automatic-simplify)
           (mpl alge)
           (mpl substitute)
@@ -45,7 +47,7 @@
 
   (define (test)
 
-    (vars a b c d x y z)
+    (vars a b c d x y z pi)
 
     (test-begin "mpl")
 
@@ -726,6 +728,96 @@
                 (contract-trig (alge " cos(x)^4 "))
 
                 (alge " 1/8 * cos(4*x) + 1/2 * cos(2*x) + 3/8 "))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; sin
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal (sin (* -2 pi)) 0)
+    (test-equal (sin (* -1 pi)) 0)
+    (test-equal (sin (*  2 pi)) 0)
+    (test-equal (sin (*  3 pi)) 0)
+
+    (test-equal (sin (* -7/2 pi))  1)
+    (test-equal (sin (* -5/2 pi)) -1)
+    (test-equal (sin (* -3/2 pi))  1)
+    (test-equal (sin (* -1/2 pi)) -1)
+    (test-equal (sin (*  1/2 pi))  1)
+    (test-equal (sin (*  3/2 pi)) -1)
+    (test-equal (sin (*  5/2 pi))  1)
+    (test-equal (sin (*  7/2 pi)) -1)
+
+    (test-equal (sin (* -4/3 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal (sin (* -2/3 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal (sin (* -1/3 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal (sin (*  1/3 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal (sin (*  2/3 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal (sin (*  4/3 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal (sin (*  5/3 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal (sin (*  7/3 pi)) (alge "  sqrt(3)/2 "))
+
+    (test-equal (sin (* -3/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal (sin (* -1/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal (sin (*  1/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal (sin (*  3/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal (sin (*  5/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal (sin (*  7/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal (sin (*  9/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal (sin (* 11/4 pi)) (alge "  1/sqrt(2) "))
+
+    (test-equal (sin (* -5/6 pi)) (alge " -1/2 "))
+    (test-equal (sin (* -1/6 pi)) (alge " -1/2 "))
+    (test-equal (sin (*  1/6 pi)) (alge "  1/2 "))
+    (test-equal (sin (*  5/6 pi)) (alge "  1/2 "))
+    (test-equal (sin (*  7/6 pi)) (alge " -1/2 "))
+    (test-equal (sin (* 11/6 pi)) (alge " -1/2 "))
+    (test-equal (sin (* 13/6 pi)) (alge "  1/2 "))
+    (test-equal (sin (* 17/6 pi)) (alge "  1/2 "))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; cos
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal (cos (* -2 pi))  1)
+    (test-equal (cos (* -1 pi)) -1)
+    (test-equal (cos (*  2 pi))  1)
+    (test-equal (cos (*  3 pi)) -1)
+
+    (test-equal (cos (* -7/2 pi)) 0)
+    (test-equal (cos (* -5/2 pi)) 0)
+    (test-equal (cos (* -3/2 pi)) 0)
+    (test-equal (cos (* -1/2 pi)) 0)
+    (test-equal (cos (*  1/2 pi)) 0)
+    (test-equal (cos (*  3/2 pi)) 0)
+    (test-equal (cos (*  5/2 pi)) 0)
+    (test-equal (cos (*  7/2 pi)) 0)
+
+    (test-equal (cos (* -4/3 pi)) -1/2)
+    (test-equal (cos (* -2/3 pi)) -1/2)
+    (test-equal (cos (* -1/3 pi))  1/2)
+    (test-equal (cos (*  1/3 pi))  1/2)
+    (test-equal (cos (*  2/3 pi)) -1/2)
+    (test-equal (cos (*  4/3 pi)) -1/2)
+    (test-equal (cos (*  5/3 pi))  1/2)
+    (test-equal (cos (*  7/3 pi))  1/2)
+
+    (test-equal (cos (* -3/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal (cos (* -1/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal (cos (*  1/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal (cos (*  3/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal (cos (*  5/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal (cos (*  7/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal (cos (*  9/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal (cos (* 11/4 pi)) (alge " -1/sqrt(2) "))
+
+    (test-equal (cos (* -5/6 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal (cos (* -1/6 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal (cos (*  1/6 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal (cos (*  5/6 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal (cos (*  7/6 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal (cos (* 11/6 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal (cos (* 13/6 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal (cos (* 17/6 pi)) (alge " -sqrt(3)/2 "))
     
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

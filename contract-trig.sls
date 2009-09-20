@@ -10,6 +10,8 @@
   (import (except (rnrs) + - * / sin cos exp)
           (mpl misc)
           (mpl automatic-simplification)
+          (mpl sin)
+          (mpl cos)
           (mpl separate-sin-cos)
           (mpl expand-main-op))
 

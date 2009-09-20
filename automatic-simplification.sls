@@ -7,7 +7,7 @@
           simplify-quotient
           simplify-difference
 
-          ^ * + / - ! exp sin cos
+          ^ * + / - ! exp
 
           simplify-sum-rec
           merge-sums
@@ -437,15 +437,15 @@
         (rnrs:exp u)
         `(exp ,u)))
 
-  (define (sin u)
-    (if (number? u)
-        (rnrs:sin u)
-        `(sin ,u)))
+  ;; (define (sin u)
+  ;;   (if (number? u)
+  ;;       (rnrs:sin u)
+  ;;       `(sin ,u)))
 
-  (define (cos u)
-    (if (number? u)
-        (rnrs:cos u)
-        `(cos ,u)))
+  ;; (define (cos u)
+  ;;   (if (number? u)
+  ;;       (rnrs:cos u)
+  ;;       `(cos ,u)))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

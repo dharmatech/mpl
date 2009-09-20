@@ -5,7 +5,7 @@
 
    ;; (mpl automatic-simplification)
    
-   ^ * + / - ! exp sin cos
+   ^ * + / - ! exp
 
    #; (rnrs base (6))
    define define-syntax

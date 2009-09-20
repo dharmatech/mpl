@@ -35,8 +35,8 @@
                 ((factorial?  v) (simplify-factorial  v))
 
                 ( (eq? (kind v) 'exp) (apply exp (cdr v)) )
-                ( (eq? (kind v) 'sin) (apply sin (cdr v)) )
-                ( (eq? (kind v) 'cos) (apply cos (cdr v)) )
+                ;; ( (eq? (kind v) 'sin) (apply sin (cdr v)) )
+                ;; ( (eq? (kind v) 'cos) (apply cos (cdr v)) )
                 
                 (else                                 v)))
         u))

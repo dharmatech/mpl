@@ -3,8 +3,11 @@
 
   (export expand-trig)
 
-  (import (mpl rnrs)
-          (mpl misc))
+  (import (except (rnrs) + - * / sin cos exp)
+          (mpl misc)
+          (mpl automatic-simplification)
+          (mpl sin)
+          (mpl cos))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -7,6 +7,30 @@
           (xitomatl AS-match)
           (mpl automatic-simplification))
 
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define pi 'pi)
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define (simplify-sin-first-quadrant a/b)
+
+    (cond ( (> a/b 2)
+
+            (sin (* (mod a/b 2) pi)) )
+
+          ( (> a/b 1)
+
+            (- (sin (- (* a/b pi) pi))) )
+
+          ( (> a/b 1/2)
+
+            (sin (* (- 1 a/b) pi)) )
+
+          ( else `(sin ,(* a/b pi)) )))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   (define (simplify-sin-k/n*pi k/n)
 
     (let ((k (numerator   k/n))
@@ -52,6 +76,12 @@
                        (negative? n)))))
 
         (- (sin (apply * (append (list -1 n) elts)))) )
+
+      ( (and ('sin ('* a/b 'pi))
+             (? (lambda (_)
+                  (and (exact? a/b)
+                       (> a/b 1/2)))))
+        (simplify-sin-first-quadrant a/b) )
 
       ( (and ('sin ('* k/n 'pi))
              (? (lambda (_)

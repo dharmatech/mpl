@@ -37,6 +37,22 @@
 
     (match u
 
+      ( ('cos 0) 1 )
+
+      ( ('cos 'pi) -1 )
+
+      ( (and ('cos n)
+             (? (lambda (_)
+                  (and (number? n)
+                       (negative? n)))))
+        (cos (- n)) )
+
+      ( (and ('cos ('* n . elts))
+             (? (lambda (_)
+                  (and (number? n)
+                       (negative? n)))))
+        (cos (apply * (append (list -1 n) elts))) )
+
       ( (and ('cos ('* k/n 'pi))
              (? (lambda (_)
                   (and (member (denominator k/n) '(1 2 3 4 6))

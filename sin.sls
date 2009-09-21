@@ -36,6 +36,23 @@
 
     (match u
 
+      ( ('sin 0) 0 )
+
+      ( ('sin 'pi) 0 )
+
+      ( (and ('sin n)
+             (? (lambda (_)
+                  (and (number? n)
+                       (negative? n)))))
+        (- (sin (* -1 n))) )
+
+      ( (and ('sin ('* n . elts))
+             (? (lambda (_)
+                  (and (number? n)
+                       (negative? n)))))
+
+        (- (sin (apply * (append (list -1 n) elts)))) )
+
       ( (and ('sin ('* k/n 'pi))
              (? (lambda (_)
                   (and (member (denominator k/n) '(1 2 3 4 6))

@@ -7,6 +7,24 @@
           (xitomatl AS-match)
           (mpl automatic-simplification))
 
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define pi 'pi)
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define (simplify-cos-first-quadrant a/b)
+
+    (cond ( (> a/b 2)   (cos (* (mod a/b 2) pi))    )
+
+          ( (> a/b 1)   (- (cos (- (* a/b pi) pi))) )
+
+          ( (> a/b 1/2) (- (cos (- pi (* a/b pi)))) )
+
+          ( else       `(cos ,(* a/b pi))           )))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   (define (simplify-cos-k/n*pi k/n)
 
     (let ((k (numerator   k/n))
@@ -33,6 +51,8 @@
                ((1 11)    (/ '(sqrt 3) 2))
                ((5 7)  (- (/ '(sqrt 3) 2))))))))
 
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   (define (simplify-cos u)
 
     (match u
@@ -53,6 +73,12 @@
                        (negative? n)))))
         (cos (apply * (append (list -1 n) elts))) )
 
+      ( (and ('cos ('* a/b 'pi))
+             (? (lambda (_)
+                  (and (exact? a/b)
+                       (> a/b 1/2)))))
+        (simplify-cos-first-quadrant a/b) )
+
       ( (and ('cos ('* k/n 'pi))
              (? (lambda (_)
                   (and (member (denominator k/n) '(1 2 3 4 6))
@@ -61,6 +87,8 @@
         (simplify-cos-k/n*pi k/n) )
 
       ( else u )))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (define (cos x)
     (simplify-cos `(cos ,x)))

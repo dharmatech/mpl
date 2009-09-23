@@ -56,6 +56,46 @@
                ((1 5)   1/2)
                ((7 11) -1/2))))))
 
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define (n*pi? elt)
+    (match elt
+      ( (and ('* n 'pi)
+             (? (lambda (_)
+                  (and (exact? n)
+                       (>= (abs n) 2)))))
+        #t )
+      ( else #f )))
+
+  (define (simplify-sum-with-pi elts)
+
+    (let ((pi-elt (find n*pi? elts)))
+
+      (let ((n (list-ref pi-elt 1)))
+
+        (sin (+ (- (apply + elts) pi-elt)
+                (* (mod n 2) pi))))))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define (n/2*pi? elt)
+    (define (n/2? x)
+      (and (exact? x)
+           (equal? (denominator x) 2)))
+    (match elt
+      ( ('* (? n/2?) 'pi) #t )
+      ( else              #f )))
+
+  (define (simplify-sin-sum-with-n/2*pi elts)
+    (let ((n/2*pi (find n/2*pi? elts)))
+      (let ((other-elts (- (apply + elts) n/2*pi)))
+        (let ((n (numerator (list-ref n/2*pi 1))))
+          (case (mod n 4)
+            ((1) `(cos ,other-elts))
+            ((3) (- `(cos ,other-elts))))))))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   (define (simplify-sin u)
 
     (match u
@@ -90,7 +130,19 @@
 
         (simplify-sin-k/n*pi k/n) )
 
+      ( (and ('sin ('+ . elts))
+             (? (lambda (_)
+                  (find n*pi? elts))))
+        (simplify-sum-with-pi elts) )
+
+      ( (and ('sin ('+ . elts))
+             (? (lambda (_)
+                  (find n/2*pi? elts))))
+        (simplify-sin-sum-with-n/2*pi elts) )
+
       ( else u )))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (define (sin x)
     (simplify-sin `(sin ,x)))

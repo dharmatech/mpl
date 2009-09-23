@@ -69,6 +69,24 @@
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  (define (n/2*pi? elt)
+    (define (n/2? x)
+      (and (exact? x)
+           (equal? (denominator x) 2)))
+    (match elt
+      ( ('* (? n/2?) 'pi) #t )
+      ( else              #f )))
+
+  (define (simplify-cos-sum-with-n/2*pi elts)
+    (let ((n/2*pi (find n/2*pi? elts)))
+      (let ((other-elts (- (apply + elts) n/2*pi)))
+        (let ((n (numerator (list-ref n/2*pi 1))))
+          (case (mod n 4)
+            ((1) (- `(sin ,other-elts)))
+            ((3) `(sin ,other-elts)))))))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   (define (simplify-cos u)
 
     (match u
@@ -106,6 +124,11 @@
              (? (lambda (_)
                   (find n*pi? elts))))
         (simplify-cos-sum-with-pi elts) )
+
+      ( (and ('cos ('+ . elts))
+             (? (lambda (_)
+                  (find n/2*pi? elts))))
+        (simplify-cos-sum-with-n/2*pi elts) )
 
       ( else u )))
 

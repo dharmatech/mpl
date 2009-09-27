@@ -12,6 +12,7 @@
           (mpl automatic-simplification)
           (mpl sin)
           (mpl cos)
+          (mpl automatic-simplify)
           (mpl separate-sin-cos)
           (mpl expand-main-op))
 
@@ -209,7 +210,8 @@
                              (^ -1 j)
                              (sin (* (- n (* 2 j)) x))))
                         0
-                        (floor (/ n 2)))))) )
+                        (floor (/ n 2))
+                        1)))) )
 
           (else u)
 
@@ -313,7 +315,7 @@
     (if (or (number? u)
             (symbol? u))
         u
-        (let ((v (map contract-trig u)))
+        (let ((v (automatic-simplify (map contract-trig u))))
           (if (or (product? v)
                   (power? v))
               (contract-trig-rules v)

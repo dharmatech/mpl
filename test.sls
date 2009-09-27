@@ -37,7 +37,7 @@
           (mpl contract-exp)
           (mpl separate-sin-cos)
           (mpl contract-trig)
-          )
+          (mpl trig-substitute))
 
   ;; (define (alge val)
   ;;   (automatic-simplify 
@@ -912,6 +912,24 @@
     (test-equal   (cos (+ x (* -1/2 pi)))   (sin x)          )
     (test-equal   (cos (+ x (*  1/2 pi)))   (* -1 (sin x))   )
     (test-equal   (cos (+ x (*  3/2 pi)))   (sin x)          )
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; trig-substitute
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal (trig-substitute '(tan x))
+                (/ (sin x) (cos x)))
+
+    (test-equal (trig-substitute '(cot x))
+                (/ (cos x) (sin x)))
+
+    (test-equal (trig-substitute '(sec x))
+                (/ 1 (cos x)))
+
+    (test-equal (trig-substitute '(csc x))
+                (/ 1 (sin x)))
+
+    (test-equal (trig-substitute x) x)
     
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

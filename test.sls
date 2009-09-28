@@ -6,7 +6,6 @@
   (import (except (rnrs) + - * / exp sin cos numerator denominator)
           (only (srfi :1) lset=)
           (srfi :64)
-          ;; (numero symbolic alg)
           (dharmalab infix alg)
           (mpl misc)
           (mpl contains)
@@ -37,13 +36,9 @@
           (mpl contract-exp)
           (mpl separate-sin-cos)
           (mpl contract-trig)
-          (mpl trig-substitute))
-
-  ;; (define (alge val)
-  ;;   (automatic-simplify 
-  ;;    (if (string? val)
-  ;;        (alg val)
-  ;;        val)))
+          (mpl trig-substitute)
+          (mpl simplify-trig)
+          )
 
   (define (test)
 
@@ -729,6 +724,14 @@
 
                 (alge " 1/8 * cos(4*x) + 1/2 * cos(2*x) + 3/8 "))
 
+    (test-equal "EA: Example 7.15 - contract-trig"
+
+                (contract-trig
+                 (alge
+                  " ( cos(x) + sin(x) )^4 + ( cos(x) - sin(x) )^4 + cos(4*x) - 3 "))
+
+                0)
+
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; sin
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -930,6 +933,20 @@
                 (/ 1 (sin x)))
 
     (test-equal (trig-substitute x) x)
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; simplify-trig
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "EA: Example 7.15 - simplify-trig"
+
+                (simplify-trig
+                 (alge
+                  " ( cos(x) + sin(x) )^4 + ( cos(x) - sin(x) )^4 + cos(4*x) - 3 "))
+
+                0)
+
+    
     
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

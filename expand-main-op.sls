@@ -24,18 +24,35 @@
 
   ;;         ( else u )))
 
+  ;; (define (expand-main-op u)
+
+  ;;   (match u
+
+  ;;     ( ('* a . rest)
+
+  ;;       (expand-product a (apply * rest)) )
+
+  ;;     ( ('^ a b)
+
+  ;;       (expand-power a b) )
+
+  ;;     ( else u )))
+
   (define (expand-main-op u)
 
     (match u
 
       ( ('* a . rest)
 
-        (expand-product a (apply * rest)) )
+        (expand-product a
+                        (expand-main-op (apply * rest))) )
 
       ( ('^ a b)
 
         (expand-power a b) )
 
       ( else u )))
+
+  
 
   )

@@ -40,6 +40,11 @@
           (mpl simplify-trig)
           )
 
+  (define-syntax test-equal-anon
+    (syntax-rules ()
+      ( (test-equal-anon a b)
+        (test-equal 'a a b) )))
+
   (define (test)
 
     (vars a b c d x y z pi)
@@ -472,6 +477,11 @@
 
                 )
 
+    (test-equal-anon (algebraic-expand
+                      (sin (* x (+ y z))))
+
+                     (sin (+ (* x y) (* x z))))
+
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; expand-main-op
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -687,7 +697,10 @@
                 (alge " exp(2*x) + exp(x+y) "))
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; contract-trg
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+    
     (test-equal "EA: Expression 7.30"
 
                 (contract-trig (alge " sin(x) * sin(y) "))
@@ -731,6 +744,8 @@
                   " ( cos(x) + sin(x) )^4 + ( cos(x) - sin(x) )^4 + cos(4*x) - 3 "))
 
                 0)
+
+    
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; sin

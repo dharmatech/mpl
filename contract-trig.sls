@@ -14,7 +14,8 @@
           (mpl cos)
           (mpl automatic-simplify)
           (mpl separate-sin-cos)
-          (mpl expand-main-op))
+          (mpl expand-main-op)
+          (mpl algebraic-expand))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -219,6 +220,56 @@
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  ;; Original version from the book
+
+  ;; (define (contract-trig-product u)
+
+  ;;   (if (= (length (cdr u)) 2)
+
+  ;;       (let ((A (list-ref u 1))
+  ;;             (B (list-ref u 2)))
+
+  ;;         (cond ( (power? A)
+  ;;                 (let ((A (contract-trig-power A)))
+  ;;                   (contract-trig-rules (* A B))) )
+
+  ;;               ( (power? B)
+  ;;                 (let ((B (contract-trig-power B)))
+  ;;                   (contract-trig-rules (* A B))) )
+
+  ;;               ( else
+
+  ;;                 (let ((x (list-ref A 1))
+  ;;                       (y (list-ref B 1)))
+
+  ;;                   (cond ( (and (sin? A) (sin? B))
+
+  ;;                           (- (/ (cos (- x y)) 2)
+  ;;                              (/ (cos (+ x y)) 2)) )
+
+  ;;                         ( (and (cos? A) (cos? B))
+
+  ;;                           (+ (/ (cos (+ x y)) 2)
+  ;;                              (/ (cos (- x y)) 2)) )
+
+  ;;                         ( (and (sin? A) (cos? B))
+
+  ;;                           (+ (/ (sin (+ x y)) 2)
+  ;;                              (/ (sin (- x y)) 2)) )
+
+  ;;                         ( (and (cos? A) (sin? B))
+
+  ;;                           (+ (/ (sin (+ x y)) 2)
+  ;;                              (/ (sin (- y x)) 2)) ))) )))
+
+  ;;       (let ((A (list-ref u 1)))
+  ;;         (let ((B (contract-trig-product (/ u A))))
+  ;;           (contract-trig-rules (* A B))))))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  ;; 2009/09/29
+
   (define (contract-trig-product u)
 
     (if (= (length (cdr u)) 2)
@@ -239,29 +290,48 @@
                   (let ((x (list-ref A 1))
                         (y (list-ref B 1)))
 
-                    (cond ( (and (sin? A) (sin? B))
+                    (algebraic-expand ;; see note [1]
 
-                            (- (/ (cos (- x y)) 2)
-                               (/ (cos (+ x y)) 2)) )
+                     (cond ( (and (sin? A) (sin? B))
 
-                          ( (and (cos? A) (cos? B))
+                             (- (/ (cos (- x y)) 2)
+                                (/ (cos (+ x y)) 2)) )
 
-                            (+ (/ (cos (+ x y)) 2)
-                               (/ (cos (- x y)) 2)) )
+                           ( (and (cos? A) (cos? B))
 
-                          ( (and (sin? A) (cos? B))
+                             (+ (/ (cos (+ x y)) 2)
+                                (/ (cos (- x y)) 2)) )
 
-                            (+ (/ (sin (+ x y)) 2)
-                               (/ (sin (- x y)) 2)) )
+                           ( (and (sin? A) (cos? B))
 
-                          ( (and (cos? A) (sin? B))
+                             (+ (/ (sin (+ x y)) 2)
+                                (/ (sin (- x y)) 2)) )
 
-                            (+ (/ (sin (+ x y)) 2)
-                               (/ (sin (- y x)) 2)) ))) )))
+                           ( (and (cos? A) (sin? B))
+
+                             (+ (/ (sin (+ x y)) 2)
+                                (/ (sin (- y x)) 2)) )))) )))
 
         (let ((A (list-ref u 1)))
           (let ((B (contract-trig-product (/ u A))))
             (contract-trig-rules (* A B))))))
+
+  ;; note [1]
+  ;;
+  ;; This line is not in the original implementation from the book.
+  ;; 
+  ;; Because of how Cohen's automatic simplification algorithm works,
+  ;; the expressions '(- x y)' can result in expressions which are not
+  ;; in algebraic-expanded form. For example:
+  ;; 
+  ;;     > (- a (+ b c))
+  ;;     (+ a (* -1 (+ b c)))
+  ;;
+  ;; If we eventually move to have automatic simplification do:
+  ;;
+  ;;     -1 * (x + y)   =>   -1*x + -1*y
+  ;;
+  ;; we might be able to remove the call to 'algebraic-expand'.
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -737,15 +737,23 @@
 
                 (alge " 1/8 * cos(4*x) + 1/2 * cos(2*x) + 3/8 "))
 
-    (test-equal "EA: Example 7.15 - contract-trig"
+    (test-equal
+
+     "EA: Example 7.15 - contract-trig"
+
+     (contract-trig
+      (alge
+       " ( cos(x) + sin(x) )^4 + ( cos(x) - sin(x) )^4 + cos(4*x) - 3 "))
+
+     0)
+
+    (test-equal "EA: Example 7.16 - contract-trig"
 
                 (contract-trig
                  (alge
-                  " ( cos(x) + sin(x) )^4 + ( cos(x) - sin(x) )^4 + cos(4*x) - 3 "))
+                  " sin(x) + sin(y) - 2 * sin(x/2 + y/2) * cos(x/2 - y/2) "))
 
                 0)
-
-    
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; sin

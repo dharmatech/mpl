@@ -3,9 +3,11 @@
 
   (export cos)
 
-  (import (except (rnrs) + - * / sin cos exp)
+  (import (except (rnrs) + - * / sin cos exp numerator denominator)
           (xitomatl AS-match)
-          (mpl automatic-simplification))
+          (mpl automatic-simplification)
+          (mpl numerator)
+          (mpl denominator))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -55,7 +57,8 @@
 
   (define (n*pi? elt)
     (define (n? x)
-      (and (exact? x)
+      (and (number? x)
+           (exact? x)
            (>= (abs x) 2)))
     (match elt
       ( ('* (? n?) 'pi) #t )
@@ -71,7 +74,8 @@
 
   (define (n/2*pi? elt)
     (define (n/2? x)
-      (and (exact? x)
+      (and (number? x)
+           (exact? x)
            (equal? (denominator x) 2)))
     (match elt
       ( ('* (? n/2?) 'pi) #t )
@@ -109,7 +113,8 @@
 
       ( (and ('cos ('* a/b 'pi))
              (? (lambda (_)
-                  (and (exact? a/b)
+                  (and (number? a/b)
+                       (exact? a/b)
                        (> a/b 1/2)))))
         (simplify-cos-first-quadrant a/b) )
 

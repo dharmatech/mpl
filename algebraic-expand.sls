@@ -3,8 +3,10 @@
 
   (export algebraic-expand)
 
-  (import (mpl rnrs)
+  (import (except (rnrs) + - * / sin cos exp)
           (mpl misc)
+          (mpl automatic-simplification)
+          (mpl automatic-simplify)
           (mpl expand-product)
           (mpl expand-power)
           )
@@ -38,6 +40,10 @@
                                 exponent)
 
                   u)) )
+
+          ( (list? u)
+            (automatic-simplify
+             (map algebraic-expand u)) )
 
           ( else u )))
 

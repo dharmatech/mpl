@@ -701,9 +701,8 @@
                 (alge " exp(2*x) + exp(x+y) "))
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; contract-trg
+    ;; contract-trig
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
     
     (test-equal "EA: Expression 7.30"
 
@@ -987,6 +986,15 @@
 
                 (simplify-trig
                  (alge " sin(x)^3 + cos(x+pi/6)^3 - sin(x+pi/3)^3 + 3*sin(3*x)/4 "))
+
+                0)
+
+    (test-equal "EA: Example 7.18"
+
+                (simplify-trig
+                 (- (/ (alge " sin(x) + sin(3*x) + sin(5*x) + sin(7*x) ")
+                       (alge " cos(x) + cos(3*x) + cos(5*x) + cos(7*x) "))
+                    '(tan (* 4 x))))
 
                 0)
     

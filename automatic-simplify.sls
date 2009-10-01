@@ -3,11 +3,13 @@
 
   (export automatic-simplify)
 
-  (import (except (rnrs) + - * / exp sin cos)
+  (import (except (rnrs) + - * / exp sin cos sqrt)
           (mpl misc)
           (mpl automatic-simplification)
           (mpl sin)
-          (mpl cos))
+          (mpl cos)
+          (mpl sqrt)
+          )
 
   ;; (define (automatic-simplify u)
   ;;   (if (list? u)
@@ -38,6 +40,8 @@
                 ( (eq? (kind v) 'exp) (apply exp (cdr v)) )
                 ( (eq? (kind v) 'sin) (apply sin (cdr v)) )
                 ( (eq? (kind v) 'cos) (apply cos (cdr v)) )
+
+                ( (eq? (kind v) 'sqrt) (apply sqrt (cdr v)) )
                 
                 (else                                 v)))
         u))

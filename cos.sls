@@ -3,11 +3,12 @@
 
   (export cos)
 
-  (import (except (rnrs) + - * / sin cos exp numerator denominator)
+  (import (except (rnrs) + - * / sin cos exp numerator denominator sqrt)
           (xitomatl AS-match)
           (mpl automatic-simplification)
           (mpl numerator)
-          (mpl denominator))
+          (mpl denominator)
+          (mpl sqrt))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -46,12 +47,12 @@
                ((2 4) -1/2)))
 
         ((4) (case (mod k 8)
-               ((1 7)    (/ 1 '(sqrt 2)))
-               ((3 5) (- (/ 1 '(sqrt 2))))))
+               ((1 7)    (/ 1 (sqrt 2)))
+               ((3 5) (- (/ 1 (sqrt 2))))))
 
         ((6) (case (mod k 12)
-               ((1 11)    (/ '(sqrt 3) 2))
-               ((5 7)  (- (/ '(sqrt 3) 2))))))))
+               ((1 11)    (/ (sqrt 3) 2))
+               ((5 7)  (- (/ (sqrt 3) 2))))))))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

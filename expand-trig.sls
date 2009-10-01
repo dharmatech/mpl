@@ -1,13 +1,20 @@
 
 (library (mpl expand-trig)
 
-  (export expand-trig)
+  (export expand-trig
+
+          ;; investigation exports
+          expand-trig-rules 
+          multiple-angle-sin
+          
+          )
 
   (import (except (rnrs) + - * / sin cos exp)
           (mpl misc)
           (mpl automatic-simplification)
           (mpl sin)
-          (mpl cos))
+          (mpl cos)
+          (mpl expand-main-op))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -122,11 +129,73 @@
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  ;; (define (expand-trig-rules A)
+
+  ;;   (cond ( (sum? A)
+
+  ;;           (let ((f (expand-trig-rules (list-ref A 1)))
+  ;;                 (r (expand-trig-rules (- A (list-ref A 1)))))
+
+  ;;             (let ((s (+ (* (list-ref f 0)
+  ;;                            (list-ref r 1))
+  ;;                         (* (list-ref f 1)
+  ;;                            (list-ref r 0))))
+  ;;                   (c (- (* (list-ref f 1)
+  ;;                            (list-ref r 1))
+  ;;                         (* (list-ref f 0)
+  ;;                            (list-ref r 0)))))
+
+  ;;               (list s c))) )
+
+  ;;         ( (and (product? A)
+  ;;                (integer? (list-ref A 1)))
+
+  ;;           (let ((f (list-ref A 1)))
+  ;;             (list (expand-main-op (multiple-angle-sin f (/ A f)))
+  ;;                   (expand-main-op (multiple-angle-cos f (/ A f))))) )
+
+  ;;         ( else (list (sin A)
+  ;;                      (cos A)) )))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  ;; (define (expand-trig-rules A)
+
+  ;;   (cond ( (sum? A)
+
+  ;;           (let ((f (expand-trig-rules (list-ref A 1)))
+  ;;                 (r (expand-trig-rules (- A (list-ref A 1)))))
+
+  ;;             (let ((s (+ (expand-main-op (* (list-ref f 0)
+  ;;                                            (list-ref r 1)))
+  ;;                         (expand-main-op (* (list-ref f 1)
+  ;;                                            (list-ref r 0)))))
+  ;;                   (c (- (expand-main-op (* (list-ref f 1)
+  ;;                                            (list-ref r 1)))
+  ;;                         (expand-main-op (* (list-ref f 0)
+  ;;                                            (list-ref r 0))))))
+
+  ;;               (list s c))) )
+
+  ;;         ( (and (product? A)
+  ;;                (integer? (list-ref A 1)))
+
+  ;;           (let ((f (list-ref A 1)))
+  ;;             (list (expand-main-op (multiple-angle-sin f (/ A f)))
+  ;;                   (expand-main-op (multiple-angle-cos f (/ A f))))) )
+
+  ;;         ( else (list (sin A)
+  ;;                      (cos A)) )))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   (define (kind u)
     (and (pair? u)
          (car u)))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  ;; Original version from book
 
   (define (expand-trig u)
 
@@ -142,6 +211,23 @@
             ( (sin) (list-ref (expand-trig-rules (list-ref v 1)) 0) )
             ( (cos) (list-ref (expand-trig-rules (list-ref v 1)) 1) )
             ( else  v )))))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  ;; (define (expand-trig u)
+
+  ;;   (if (or (number? u)
+  ;;           (symbol? u))
+
+  ;;       u
+
+  ;;       (let ((v (expand-main-op (map expand-trig u))))
+
+  ;;          (case (kind u)
+
+  ;;            ( (sin) (list-ref (expand-trig-rules (list-ref v 1)) 0) )
+  ;;            ( (cos) (list-ref (expand-trig-rules (list-ref v 1)) 1) )
+  ;;            ( else  v )))))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

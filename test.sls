@@ -3,7 +3,7 @@
 
   (export test)
 
-  (import (except (rnrs) + - * / exp sin cos numerator denominator)
+  (import (except (rnrs) + - * / exp sin cos numerator denominator sqrt)
           (only (srfi :1) lset=)
           (srfi :64)
           (dharmalab infix alg)
@@ -38,6 +38,7 @@
           (mpl contract-trig)
           (mpl trig-substitute)
           (mpl simplify-trig)
+          (mpl sqrt)
           )
 
   (define-syntax test-equal-anon
@@ -267,7 +268,7 @@
                        (variables
                         (automatic-simplify
                          (alg " sqrt(2) * x^2 + sqrt(3) * x + sqrt(5) ")))
-                       '((sqrt 2) (sqrt 3) x (sqrt 5)))
+                       (list (sqrt 2) (sqrt 3) x (sqrt 5)))
                 #t)
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -665,8 +666,11 @@
     
                 (expand-trig (alge " sin( 2 * (x+y) ) "))
 
+                
                 (alge " 2 * ( sin(x) * cos(y) + cos(x) * sin(y) ) *
-                        ( cos(x) * cos(y) - sin(x) * sin(y) ) "))
+                        ( cos(x) * cos(y) - sin(x) * sin(y) ) ")
+
+                )
 
     (test-equal "EA: Expression 7.18"
     
@@ -787,23 +791,23 @@
     (test-equal (sin (*  5/2 pi))  1)
     (test-equal (sin (*  7/2 pi)) -1)
 
-    (test-equal (sin (* -4/3 pi)) (alge "  sqrt(3)/2 "))
-    (test-equal (sin (* -2/3 pi)) (alge " -sqrt(3)/2 "))
-    (test-equal (sin (* -1/3 pi)) (alge " -sqrt(3)/2 "))
-    (test-equal (sin (*  1/3 pi)) (alge "  sqrt(3)/2 "))
-    (test-equal (sin (*  2/3 pi)) (alge "  sqrt(3)/2 "))
-    (test-equal (sin (*  4/3 pi)) (alge " -sqrt(3)/2 "))
-    (test-equal (sin (*  5/3 pi)) (alge " -sqrt(3)/2 "))
-    (test-equal (sin (*  7/3 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal-anon (sin (* -4/3 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal-anon (sin (* -2/3 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal-anon (sin (* -1/3 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal-anon (sin (*  1/3 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal-anon (sin (*  2/3 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal-anon (sin (*  4/3 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal-anon (sin (*  5/3 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal-anon (sin (*  7/3 pi)) (alge "  sqrt(3)/2 "))
 
-    (test-equal (sin (* -3/4 pi)) (alge " -1/sqrt(2) "))
-    (test-equal (sin (* -1/4 pi)) (alge " -1/sqrt(2) "))
-    (test-equal (sin (*  1/4 pi)) (alge "  1/sqrt(2) "))
-    (test-equal (sin (*  3/4 pi)) (alge "  1/sqrt(2) "))
-    (test-equal (sin (*  5/4 pi)) (alge " -1/sqrt(2) "))
-    (test-equal (sin (*  7/4 pi)) (alge " -1/sqrt(2) "))
-    (test-equal (sin (*  9/4 pi)) (alge "  1/sqrt(2) "))
-    (test-equal (sin (* 11/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal-anon (sin (* -3/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal-anon (sin (* -1/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal-anon (sin (*  1/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal-anon (sin (*  3/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal-anon (sin (*  5/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal-anon (sin (*  7/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal-anon (sin (*  9/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal-anon (sin (* 11/4 pi)) (alge "  1/sqrt(2) "))
 
     (test-equal (sin (* -5/6 pi)) (alge " -1/2 "))
     (test-equal (sin (* -1/6 pi)) (alge " -1/2 "))
@@ -898,23 +902,23 @@
     (test-equal (cos (*  5/3 pi))  1/2)
     (test-equal (cos (*  7/3 pi))  1/2)
 
-    (test-equal (cos (* -3/4 pi)) (alge " -1/sqrt(2) "))
-    (test-equal (cos (* -1/4 pi)) (alge "  1/sqrt(2) "))
-    (test-equal (cos (*  1/4 pi)) (alge "  1/sqrt(2) "))
-    (test-equal (cos (*  3/4 pi)) (alge " -1/sqrt(2) "))
-    (test-equal (cos (*  5/4 pi)) (alge " -1/sqrt(2) "))
-    (test-equal (cos (*  7/4 pi)) (alge "  1/sqrt(2) "))
-    (test-equal (cos (*  9/4 pi)) (alge "  1/sqrt(2) "))
-    (test-equal (cos (* 11/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal-anon (cos (* -3/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal-anon (cos (* -1/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal-anon (cos (*  1/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal-anon (cos (*  3/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal-anon (cos (*  5/4 pi)) (alge " -1/sqrt(2) "))
+    (test-equal-anon (cos (*  7/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal-anon (cos (*  9/4 pi)) (alge "  1/sqrt(2) "))
+    (test-equal-anon (cos (* 11/4 pi)) (alge " -1/sqrt(2) "))
 
-    (test-equal (cos (* -5/6 pi)) (alge " -sqrt(3)/2 "))
-    (test-equal (cos (* -1/6 pi)) (alge "  sqrt(3)/2 "))
-    (test-equal (cos (*  1/6 pi)) (alge "  sqrt(3)/2 "))
-    (test-equal (cos (*  5/6 pi)) (alge " -sqrt(3)/2 "))
-    (test-equal (cos (*  7/6 pi)) (alge " -sqrt(3)/2 "))
-    (test-equal (cos (* 11/6 pi)) (alge "  sqrt(3)/2 "))
-    (test-equal (cos (* 13/6 pi)) (alge "  sqrt(3)/2 "))
-    (test-equal (cos (* 17/6 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal-anon (cos (* -5/6 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal-anon (cos (* -1/6 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal-anon (cos (*  1/6 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal-anon (cos (*  5/6 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal-anon (cos (*  7/6 pi)) (alge " -sqrt(3)/2 "))
+    (test-equal-anon (cos (* 11/6 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal-anon (cos (* 13/6 pi)) (alge "  sqrt(3)/2 "))
+    (test-equal-anon (cos (* 17/6 pi)) (alge " -sqrt(3)/2 "))
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; cos( a + b + ... + n * pi ) where abs(n) >= 2
@@ -961,15 +965,30 @@
     ;; simplify-trig
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    (test-equal "EA: Example 7.15 - simplify-trig"
+    (test-equal
+
+     "EA: Example 7.15 - simplify-trig"
+
+     (simplify-trig
+      (alge
+       " ( cos(x) + sin(x) )^4 + ( cos(x) - sin(x) )^4 + cos(4*x) - 3 "))
+
+     0)
+
+    (test-equal "EA: Example 7.16 - simplify-trig"
 
                 (simplify-trig
                  (alge
-                  " ( cos(x) + sin(x) )^4 + ( cos(x) - sin(x) )^4 + cos(4*x) - 3 "))
+                  " sin(x) + sin(y) - 2 * sin(x/2 + y/2) * cos(x/2 - y/2) "))
 
                 0)
 
-    
+    (test-equal "EA: Example 7.17"
+
+                (simplify-trig
+                 (alge " sin(x)^3 + cos(x+pi/6)^3 - sin(x+pi/3)^3 + 3*sin(3*x)/4 "))
+
+                0)
     
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

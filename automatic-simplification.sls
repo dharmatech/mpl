@@ -31,47 +31,26 @@
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  (define (simplify-integer-power v n)
+  ;; 2009/10/02
 
-    (cond ((= n 0) 1) ;; SINTPOW-2
-          ((= n 1) v) ;; SINTPOW-3
-
-          (else
-          
-           (match v
-
-             ( (? number?) (expt v n) ) ;; SINTPOW-1
-
-             ( ('^ r s) ;; SINTPOW-4
-               (let ((p (* s n)))
-                 (^ r p)) )
-
-             ( ('* . elts) ;; SINTPOW-5
-               (apply *
-                      (map (lambda (elt)
-                             (^ elt n))
-                           elts)) )
-
-             ( else `(^ ,v ,n) )))))
-
-  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  (define (simplify-power u)
-
-    (match u
-
-      ( ('^ 0 (? number? w)) (expt 0 w) ) ;; SPOW-2
-
-      ( ('^ 1 w) 1 ) ;; SPOW-3
-
-      ( ('^ v (? integer? w)) (simplify-integer-power v w) ) ;; SPOW-4
-
-      ( else u )))
-
-  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (define (raise-to expo)
+    (lambda (base)
+      (^ base expo)))
 
   (define (^ v w)
-    (simplify-power `(^ ,v ,w)))
+    (match (list v w)
+      ((0 w) 0)
+      ((1 w) 1)
+      ((v 0) 1)
+      ((v 1) v)
+      (((? number?) (? integer?)) (expt v w))
+      ((('^ r s)    (? integer?)) (^ r (* s w)))
+      ((('* . vs)   (? integer?)) (apply * (map (raise-to w) vs)))
+      (else `(^ ,v ,w) )))
+
+  (define (simplify-power u)
+    (^ (list-ref u 1)
+       (list-ref u 2)))
   
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -436,16 +415,6 @@
     (if (number? u)
         (rnrs:exp u)
         `(exp ,u)))
-
-  ;; (define (sin u)
-  ;;   (if (number? u)
-  ;;       (rnrs:sin u)
-  ;;       `(sin ,u)))
-
-  ;; (define (cos u)
-  ;;   (if (number? u)
-  ;;       (rnrs:cos u)
-  ;;       `(cos ,u)))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

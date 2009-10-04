@@ -3,9 +3,9 @@
 
   (export cos)
 
-  (import (except (rnrs) + - * / sin cos exp numerator denominator sqrt)
+  (import (mpl rnrs-sans)
           (xitomatl AS-match)
-          (mpl automatic-simplification)
+          (mpl arithmetic)
           (mpl numerator)
           (mpl denominator)
           (mpl sqrt))

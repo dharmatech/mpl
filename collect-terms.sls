@@ -3,17 +3,11 @@
 
   (export collect-terms)
 
-  (import (except (rnrs) + *)
-
+  (import (mpl rnrs-sans)
           (only (srfi :1) iota)
-
           (mpl misc)
-
-          (only (mpl automatic-simplification) + *)
-          
-          (mpl coeff-var-monomial)
-
-          )
+          (mpl arithmetic)
+          (mpl coeff-var-monomial))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

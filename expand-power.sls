@@ -3,8 +3,10 @@
 
   (export expand-power)
 
-  (import (mpl rnrs)
+  (import (mpl rnrs-sans)
           (mpl misc)
+          (mpl arithmetic)
+          (mpl factorial)
           (mpl expand-product))
 
   (define (expand-power u n)

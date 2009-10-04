@@ -3,13 +3,12 @@
 
   (export algebraic-expand)
 
-  (import (except (rnrs) + - * / sin cos exp)
+  (import (mpl rnrs-sans)
           (mpl misc)
-          (mpl automatic-simplification)
+          (mpl arithmetic)
           (mpl automatic-simplify)
           (mpl expand-product)
-          (mpl expand-power)
-          )
+          (mpl expand-power))
 
   ;; (define (algebraic-expand u)
     

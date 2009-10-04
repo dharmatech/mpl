@@ -3,9 +3,9 @@
 
   (export separate-sin-cos)
 
-  (import (except (rnrs) + - * / sin cos exp)
+  (import (mpl rnrs-sans)
           (mpl misc)
-          (mpl automatic-simplification))
+          (mpl arithmetic))
   
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

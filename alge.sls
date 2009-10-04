@@ -5,7 +5,7 @@
 
   (import (rnrs)
           (dharmalab infix alg)
-          (only (mpl automatic-simplify) automatic-simplify))
+          (mpl automatic-simplify))
 
   (define (alge val)
     (automatic-simplify 

@@ -3,18 +3,15 @@
 
   (export simplify-trig)
 
-  (import (except (rnrs) + - * / sin cos exp numerator denominator)
-          (mpl automatic-simplification)
+  (import (mpl rnrs-sans)
+          (mpl arithmetic)
           (mpl numerator)
           (mpl denominator)
           (mpl rationalize-expression)
           (mpl expand-trig)
           (mpl contract-trig)
           (mpl trig-substitute)
-
-          (mpl algebraic-expand)
-          
-          )
+          (mpl algebraic-expand))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

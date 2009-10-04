@@ -3,11 +3,11 @@
 
   (export contract-exp)
 
-  (import (except (rnrs) + - * / sin cos exp)
+  (import (mpl rnrs-sans)
           (mpl misc)
-          (mpl automatic-simplification)
-          (mpl expand-main-op)
-          )
+          (mpl arithmetic)
+          (mpl exp)
+          (mpl expand-main-op))
 
   (define (contract-exp-rules u)
 

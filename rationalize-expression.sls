@@ -3,9 +3,9 @@
 
   (export rationalize-expression)
 
-  (import (except (rnrs) + - * / numerator denominator exp sin cos)
+  (import (mpl rnrs-sans)
           (mpl misc)
-          (mpl automatic-simplification)
+          (mpl arithmetic)
           (mpl numerator)
           (mpl denominator))
 

@@ -3,8 +3,9 @@
 
   (export sqrt)
 
-  (import (rename (rnrs) (sqrt rnrs:sqrt))
-          (only (mpl automatic-simplification) ^))
+  (import (mpl rnrs-sans)
+          (rename (only (rnrs) sqrt) (sqrt rnrs:sqrt))
+          (mpl arithmetic))
 
   (define (sqrt x)
     (if (and (number? x)
@@ -13,4 +14,3 @@
         (^ x 1/2)))
 
   )
-          

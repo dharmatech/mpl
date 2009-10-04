@@ -3,14 +3,13 @@
 
   (export rational-expand)
 
-  (import (except (rnrs) + - * / numerator denominator exp sin cos)
-          (mpl automatic-simplification)
+  (import (mpl rnrs-sans)
+          (mpl arithmetic)
           (mpl algebraic-expand)
           (mpl numerator)
           (mpl denominator)
           (mpl rational-gre)
-          (mpl rationalize-expression)
-          )
+          (mpl rationalize-expression))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

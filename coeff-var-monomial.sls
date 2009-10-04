@@ -3,10 +3,9 @@
 
   (export coeff-var-monomial)
 
-  (import (except (rnrs) /)
-          (only (mpl automatic-simplification) /)
-          (mpl contains)
-          )
+  (import (mpl rnrs-sans)
+          (mpl arithmetic)
+          (mpl contains))
 
   ;; (define (coeff-var-monomial u v)
 

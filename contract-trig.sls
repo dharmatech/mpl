@@ -4,12 +4,11 @@
   (export contract-trig
           contract-trig-rules
           contract-trig-power
-          contract-trig-product
-          )
+          contract-trig-product)
 
-  (import (except (rnrs) + - * / sin cos exp)
+  (import (mpl rnrs-sans)
           (mpl misc)
-          (mpl automatic-simplification)
+          (mpl arithmetic)
           (mpl sin)
           (mpl cos)
           (mpl automatic-simplify)

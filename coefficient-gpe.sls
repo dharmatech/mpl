@@ -1,15 +1,12 @@
 
 (library (mpl coefficient-gpe)
 
-  (export coefficient-gpe
-          coefficient-monomial-gpe
-          )
+  (export coefficient-gpe coefficient-monomial-gpe)
 
-  (import (except (rnrs) + /)
+  (import (mpl rnrs-sans)
           (mpl misc)
-          (only (mpl automatic-simplification) + / ^)
-          (mpl contains)
-          )
+          (mpl arithmetic)
+          (mpl contains))
 
   ;; (define (base u)
   ;;   (list-ref u 1))

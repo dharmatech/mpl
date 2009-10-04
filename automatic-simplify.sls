@@ -3,13 +3,16 @@
 
   (export automatic-simplify)
 
-  (import (except (rnrs) + - * / exp sin cos sqrt)
+  (import (mpl rnrs-sans)
           (mpl misc)
-          (mpl automatic-simplification)
+          (mpl sum-product-power)
+          (mpl sub)
+          (mpl div)
+          (mpl factorial)
+          (mpl exp)
           (mpl sin)
           (mpl cos)
-          (mpl sqrt)
-          )
+          (mpl sqrt))
 
   ;; (define (automatic-simplify u)
   ;;   (if (list? u)

@@ -1,17 +1,11 @@
 
 (library (mpl expand-trig)
 
-  (export expand-trig
+  (export expand-trig)
 
-          ;; investigation exports
-          expand-trig-rules 
-          multiple-angle-sin
-          
-          )
-
-  (import (except (rnrs) + - * / sin cos exp)
+  (import (mpl rnrs-sans)
           (mpl misc)
-          (mpl automatic-simplification)
+          (mpl arithmetic)
           (mpl sin)
           (mpl cos)
           (mpl expand-main-op))

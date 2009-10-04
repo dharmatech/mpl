@@ -3,7 +3,9 @@
 
   (export expand-exp)
 
-  (import (mpl rnrs)
+  (import (mpl rnrs-sans)
+          (mpl arithmetic)
+          (mpl exp)
           (mpl misc))
   
   (define (expand-exp-rules A)

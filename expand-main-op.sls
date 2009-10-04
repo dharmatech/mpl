@@ -3,9 +3,9 @@
 
   (export expand-main-op)
 
-  (import (except (rnrs) + - * / exp)
+  (import (mpl rnrs-sans)
           (xitomatl AS-match)
-          (mpl automatic-simplification)
+          (mpl arithmetic)
           (mpl misc)
           (mpl expand-product)
           (mpl expand-power))

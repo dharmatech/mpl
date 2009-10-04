@@ -3,8 +3,9 @@
 
   (export expand-product)
 
-  (import (mpl rnrs)
-          (mpl misc))
+  (import (mpl rnrs-sans)
+          (mpl misc)
+          (mpl arithmetic))
 
   (define (expand-product r s)
 

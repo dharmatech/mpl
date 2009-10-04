@@ -3,9 +3,10 @@
 
   (export numerator)
 
-  (import (except (rename (rnrs) (numerator rnrs:numerator)) + - * / exp sin cos)
+  (import (mpl rnrs-sans)
+          (rename (only (rnrs) numerator) (numerator rnrs:numerator))
           (xitomatl AS-match)
-          (mpl automatic-simplification))
+          (mpl arithmetic))
 
   (define (numerator u)
 

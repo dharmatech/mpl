@@ -3,9 +3,9 @@
 
   (export trig-substitute)
 
-  (import (except (rnrs) + - * / sin cos exp)
+  (import (mpl rnrs-sans)
           (xitomatl AS-match)
-          (mpl automatic-simplification)
+          (mpl arithmetic)
           (mpl sin)
           (mpl cos))
 

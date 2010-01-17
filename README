@@ -14,3 +14,17 @@
 * Running the unit tests
 
     $ ikarus --r6rs-script ~/mpl/test.sps
+
+* About
+
+Implements some of the algorithms in the books:
+
+    Computer Algebra and Symbolic Computation: Elementary Algorithms
+
+and
+
+    Computer Algebra and Symbolic Computation: Mathematical Methods
+
+by Joel S. Cohen.
+
+See 'test.sls' for examples.

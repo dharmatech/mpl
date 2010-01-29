@@ -88,9 +88,9 @@ You can use 'vars' to create a bunch of self-quoting symbols. For
 example, if you know you'll be working with x, y, and z, alot and
 don't want to quote them manually, you can do:
 
-:(import (mpl misc))
-:(vars x y z)
-:(/ (+ x y) z)
+:> (import (mpl misc))
+:> (vars x y z)
+:> (/ (+ x y) z)
 
 ** collect-terms
 

@@ -1,0 +1,114 @@
+
+* Introduction
+
+There are a few barriers in the way of understanding how a computer
+algebra system works. Commercial systems like Mathematica, Maple, and
+the engines in the TI-89 and HP-50 calculators are closed source. Some
+open source ones such as Axiom and Maxima can be incredibly complex.
+
+[[http://web.cs.du.edu/~jscohen/][Joel S. Cohen]], professor emeritus at the University of Colorodo,
+authored two volumes which can help dispel the mystery of CAS
+internals:
+
+[[http://web.cs.du.edu/~jscohen/ElementaryAlgorithms/index.htm][Computer Algebra and Symbolic Computation: Elementary Algorithms]]
+
+[[http://web.cs.du.edu/~jscohen/MathematicalMethods/index.htm][Computer Algebra and Symbolic Computation: Mathematical Methods]]
+
+In these texts, Cohen uses a "Mathematical Pseudo Language" (MPL) to
+illustrate some basic algorithms used in computer algebra systems.
+
+The [[http://github.com/dharmatech/mpl][mpl]] Scheme libraries are implementations of some of these
+algorithms.
+
+Up till now, I've hacked on the system while in Minneapolis Minnesota,
+so perhaps I should call the project 'mpls'. ;-)
+
+* Implementation support
+
+The mpl libraries are designed for Scheme systems which implement the
+R6RS standard.
+
+The mpl testsuite successfully runs in:
+
+- Ikarus
+- Ypsilon
+- Chez
+- Mosh
+
+* Other projects
+
+** sympy
+
+[[http://code.google.com/p/sympy/][Sympy]] endows Python with symbolic math capabilities.
+
+** JACAL
+
+[[http://people.csail.mit.edu/jaffer/JACAL][JACAL]] is a CAS written in R5RS Scheme which runs in many
+implementations that support SLIB.
+
+** MIT Scheme based scmutils
+
+[[http://groups.csail.mit.edu/mac/users/gjs/6946/linux-install.htm][Software]] used for the [[http://mitpress.mit.edu/SICM/book.html][book]] Structure and Interpretation of
+Classical Mechanics.
+
+* A tour of mpl
+
+** Symbolic arithmetic
+
+In standard Scheme, if you try to add two symbols, you'll get an
+error:
+
+:> (+ 'x 'x)
+:Unhandled exception
+:...
+
+Let's try again with the help of mpl:
+
+:> (import (mpl arithmetic))
+:> (+ 'x 'x)
+:(* 2 x)
+
+The '(mpl arithmetic)' library offers symbolic versions of + - * / ^.
+
+** Symbolic trigonometry
+
+The '(mpl trig)' library offers symbolic versions of sin and cos.
+
+** Infix expressions
+
+mpl comes with a basic infix expression mechanism.
+
+:> (import (mpl alge))
+:> (alge "2+x*y+z^2")
+:(+ 2 (* x y) (^ z 2))
+
+** vars
+
+You can use 'vars' to create a bunch of self-quoting symbols. For
+example, if you know you'll be working with x, y, and z, alot and
+don't want to quote them manually, you can do:
+
+:(import (mpl misc))
+:(vars x y z)
+:(/ (+ x y) z)
+
+** collect-terms
+
+'collect-terms' knows how to handle basic collection of terms:
+
+:> (import (mpl collect-terms))
+:> (collect-terms (alge " 2 a x y + 3 b x y + 4 a x + 5 b x ")
+:                 '(x y))
+:(+ (* (+ (* 4 a) (* 5 b)) x) (* (+ (* 2 a) (* 3 b)) x y))
+
+** algebraic-expand
+
+:> (import (mpl algebraic-expand))
+:> (algebraic-expand (alge " (2 a + 3 b) x y + (4 a + 5 b) x "))
+:(+ (* 4 a x) (* 5 b x) (* 2 a x y) (* 3 b x y))
+
+** The test suite
+
+Take a look at the file 'test.sls' to get more ideas of what is
+possible.
+

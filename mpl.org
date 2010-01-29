@@ -6,7 +6,7 @@ algebra system works. Commercial systems like Mathematica, Maple, and
 the engines in the TI-89 and HP-50 calculators are closed source. Some
 open source ones such as Axiom and Maxima can be incredibly complex.
 
-[[http://web.cs.du.edu/~jscohen/][Joel S. Cohen]], professor emeritus at the University of Colorodo,
+[[http://web.cs.du.edu/~jscohen/][Joel S. Cohen]], professor emeritus at the University of Denver,
 authored two volumes which can help dispel the mystery of CAS
 internals:
 

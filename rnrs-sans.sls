@@ -29,7 +29,7 @@
    gcd lcm
    floor ceiling truncate round
    rationalize
-   log
+   ;; log
    tan asin acos atan
    exact-integer-sqrt
    expt

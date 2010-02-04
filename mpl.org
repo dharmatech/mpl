@@ -109,6 +109,6 @@ don't want to quote them manually, you can do:
 
 ** The test suite
 
-Take a look at the file 'test.sls' to get more ideas of what is
+Take a look at the file [[./test.sls]] to get more ideas of what is
 possible.
 

@@ -10,6 +10,7 @@
           (mpl div)
           (mpl factorial)
           (mpl exp)
+          (mpl log)
           (mpl sin)
           (mpl cos)
           (mpl sqrt))
@@ -41,6 +42,7 @@
                 ((factorial?  v) (simplify-factorial  v))
 
                 ( (eq? (kind v) 'exp) (apply exp (cdr v)) )
+                ( (eq? (kind v) 'log) (apply log (cdr v)) )
                 ( (eq? (kind v) 'sin) (apply sin (cdr v)) )
                 ( (eq? (kind v) 'cos) (apply cos (cdr v)) )
 

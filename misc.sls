@@ -5,6 +5,7 @@
           exp?
           sin?
           cos?
+          tan?
           vars
           base
           exponent
@@ -71,6 +72,10 @@
   (define (cos? expr)
     (and (pair? expr)
          (eq? (car expr) 'cos)))
+
+  (define (tan? expr)
+    (and (pair? expr)
+         (eq? (car expr) 'tan)))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

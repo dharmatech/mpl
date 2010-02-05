@@ -13,6 +13,7 @@
           (mpl log)
           (mpl sin)
           (mpl cos)
+          (mpl tan)
           (mpl sqrt))
 
   ;; (define (automatic-simplify u)
@@ -45,6 +46,7 @@
                 ( (eq? (kind v) 'log) (apply log (cdr v)) )
                 ( (eq? (kind v) 'sin) (apply sin (cdr v)) )
                 ( (eq? (kind v) 'cos) (apply cos (cdr v)) )
+                ( (eq? (kind v) 'tan) (apply tan (cdr v)) )
 
                 ( (eq? (kind v) 'sqrt) (apply sqrt (cdr v)) )
                 

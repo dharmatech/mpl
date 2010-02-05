@@ -30,7 +30,8 @@
    floor ceiling truncate round
    rationalize
    ;; log
-   tan asin acos atan
+   ;; tan
+   asin acos atan
    exact-integer-sqrt
    expt
    make-rectangular make-polar real-part imag-part

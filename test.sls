@@ -19,6 +19,7 @@
           (mpl sqrt)
           (mpl sin)
           (mpl cos)
+          (mpl tan)
           (mpl automatic-simplify)
           (mpl alge)
           (mpl substitute)
@@ -42,7 +43,8 @@
           (mpl separate-sin-cos)
           (mpl contract-trig)
           (mpl trig-substitute)
-          (mpl simplify-trig))
+          (mpl simplify-trig)
+          (mpl derivative))
 
   (define-syntax test-equal-anon
     (syntax-rules ()

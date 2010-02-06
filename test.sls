@@ -1002,6 +1002,47 @@
                     '(tan (* 4 x))))
 
                 0)
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; derivative
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "Mendelson: 8.1" (derivative (alge "2x-7") x) 2)
+
+    (test-equal "Mendelson: 8.3"
+
+                (derivative (alge "2*x^2 - 3*x + 5") x)
+
+                (alge "4*x - 3"))
+
+    (test-equal "Mendelson: 8.4"
+
+                (derivative (alge " x^3 ") x)
+
+                (alge " 3*x^2 "))
+
+    (test-equal "Mendelson: 8.6"
+
+                (derivative (alge " 7*x^5 - 3*x^4 + 6*x^2 + 3*x + 4 ") x)
+
+                (alge " 35*x^4 - 12*x^3 + 12*x + 3 "))
+
+    (test-equal "Mendelson: 8.8"
+
+                (derivative
+                 (alge " (5*x^3 - 20*x + 13) * (4*x^6 + 2*x^5 - 7*x^2 + 2*x ")
+                 x)
+
+                (alge
+                 (string-append " (5*x^3 - 20*x + 13) * (24*x^5 + 10*x^4 - 14*x + 2) "
+                                " + "
+                                " (4*x^6 + 2*x^5 - 7*x^2 + 2*x) * (15*x^2 - 20) ")))
+
+    (test-equal "Mendelson: 8.9"
+
+                (derivative (alge " (3*x - 2) / (x^2 + 7) ") x)
+
+                (alge " (-2*x*(-2 + 3*x))/(7 + x^2)^2 + 3/(7 + x^2) "))
     
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

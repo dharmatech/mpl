@@ -9,7 +9,7 @@
           vars
           base
           exponent
-          )
+          inexact-number?)
 
   (import (rnrs)
           (xitomatl AS-match))
@@ -105,5 +105,11 @@
       ((vars name ...)
        (begin (define name 'name)
               ...))))
+
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (define (inexact-number? x)
+    (and (number? x)
+         (inexact? x)))
 
   )

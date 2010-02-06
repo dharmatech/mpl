@@ -4,11 +4,13 @@
   (export sin)
 
   (import (mpl rnrs-sans)
+          (rename (only (rnrs) sin) (sin rnrs:sin))
           (xitomatl AS-match)
           (mpl arithmetic)
           (mpl numerator)
           (mpl denominator)
-          (mpl sqrt))
+          (mpl sqrt)
+          (mpl misc))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -108,6 +110,8 @@
       ( ('sin 0) 0 )
 
       ( ('sin 'pi) 0 )
+
+      ( ('sin (? inexact-number? n)) (rnrs:sin n) )
 
       ( (and ('sin n)
              (? (lambda (_)

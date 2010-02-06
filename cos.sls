@@ -4,11 +4,13 @@
   (export cos)
 
   (import (mpl rnrs-sans)
+          (rename (only (rnrs) cos) (cos rnrs:cos))
           (xitomatl AS-match)
           (mpl arithmetic)
           (mpl numerator)
           (mpl denominator)
-          (mpl sqrt))
+          (mpl sqrt)
+          (mpl misc))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -99,6 +101,8 @@
       ( ('cos 0) 1 )
 
       ( ('cos 'pi) -1 )
+
+      ( ('cos (? inexact-number? n)) (rnrs:cos n) )
 
       ( (and ('cos n)
              (? (lambda (_)

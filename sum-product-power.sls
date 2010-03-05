@@ -8,7 +8,8 @@
 
   (import (rename (rnrs) (+ rnrs:+) (* rnrs:*))
           (xitomatl AS-match)
-          (dharmalab misc misc)
+          (dharmalab misc equivalence)
+          (dharmalab misc list)
           (mpl order-relation))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -9,7 +9,7 @@
           free-of?)
 
   (import (rnrs)
-          (only (srfi :1) any))
+          (only (surfage s1 lists) any))
 
   (define (contains-this? t)
     (lambda (u)

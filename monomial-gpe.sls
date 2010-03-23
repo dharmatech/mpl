@@ -6,7 +6,7 @@
           is-monomial-gpe?)
 
   (import (rnrs)
-          (only (srfi :1) every)
+          (only (surfage s1 lists) every)
           (mpl misc)
           (mpl contains)
           )

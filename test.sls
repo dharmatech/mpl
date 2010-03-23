@@ -4,8 +4,8 @@
   (export test)
 
   (import (mpl rnrs-sans)
-          (only (srfi :1) lset=)
-          (srfi :64 testing)
+          (only (surfage s1 lists) lset=)
+          (surfage s64 testing)
           (dharmalab infix alg)
           (mpl misc)
           (mpl contains)

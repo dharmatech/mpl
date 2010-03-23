@@ -4,7 +4,7 @@
   (export collect-terms)
 
   (import (mpl rnrs-sans)
-          (only (srfi :1) iota)
+          (only (surfage s1 lists) iota)
           (mpl misc)
           (mpl arithmetic)
           (mpl coeff-var-monomial))

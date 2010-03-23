@@ -3,7 +3,7 @@
 
     $ cd ~/scheme # Or wherever you keep your Scheme libraries
 
-    $ bzr branch lp:~scheme-libraries-team/scheme-libraries/srfi --revision 91
+    $ git clone git://github.com/dharmatech/surfage.git
 
     $ bzr branch lp:~derick-eddington/scheme-libraries/xitomatl
 

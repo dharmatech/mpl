@@ -5,7 +5,7 @@
 
   (import (rnrs)
           (mpl misc)
-          (only (srfi :1) lset-union)
+          (only (surfage s1 lists) lset-union)
           )
 
   (define (union . lists)

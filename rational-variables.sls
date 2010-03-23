@@ -4,7 +4,7 @@
   (export rational-variables)
 
   (import (except (rnrs) numerator denominator exp)
-          (only (srfi :1) lset-union)
+          (only (surfage s1 lists) lset-union)
           (mpl variables)
           (mpl numerator)
           (mpl denominator)

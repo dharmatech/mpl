@@ -44,7 +44,8 @@
           (mpl contract-trig)
           (mpl trig-substitute)
           (mpl simplify-trig)
-          (mpl derivative))
+          (mpl derivative)
+          (mpl polynomial-division))
 
   (define-syntax test-equal-anon
     (syntax-rules ()
@@ -1049,6 +1050,19 @@
                 (derivative (alge " (3*x - 2) / (2*x + 5) ") x)
 
                 (alge " 3 / (5 + 2*x) - 2*(-2 + 3*x)/(5 + 2*x)^2 "))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; polynomial-division
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "MM: Example 4.4"
+
+      (polynomial-division (alge " 5*x^2 + 4*x + 1 ")
+                           (alge " 2*x + 3 ")
+                           x)
+
+      (list (alge " 5/2*x - 7/4 ")
+            (alge " 25/4 ")))
     
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

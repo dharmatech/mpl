@@ -45,7 +45,8 @@
           (mpl trig-substitute)
           (mpl simplify-trig)
           (mpl derivative)
-          (mpl polynomial-division))
+          (mpl polynomial-division)
+          (mpl polynomial-expansion))
 
   (define-syntax test-equal-anon
     (syntax-rules ()
@@ -54,7 +55,7 @@
 
   (define (test)
 
-    (vars a b c d x y z pi)
+    (vars a b c d x y z pi t)
 
     (test-begin "mpl")
 
@@ -1072,6 +1073,36 @@
 
       (list (alge " 2*x-3 ")
             0))
+
+    (test-equal "MM: Example 4.10"
+
+      (polynomial-division (alge " x^2 - 4 ")
+                           (alge " x+2 ")
+                           x)
+
+      (list (alge " x - 2 ") 0))
+
+    (test-equal "MM: Example 4.10"
+
+      (polynomial-division (alge " x^2 + 5*x + 6 ")
+                           (alge " x+2 ")
+                           x)
+
+      (list (alge " x + 3 ") 0))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; polynomial-expansion
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "MM: Example 4.18"
+
+      (polynomial-expansion
+       (alge " x^5 + 11*x^4 + 51*x^3 + 124*x^2 + 159*x + 86 ")
+       (alge " x^2 + 4*x + 5 ")
+       x
+       t)
+
+      (alge " x*t^2 + 3*t^2 + x*t + 2*t + x + 1 "))
     
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

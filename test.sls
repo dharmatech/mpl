@@ -1112,7 +1112,35 @@
                             t)
 
       (alge " t^3 + 2*t + 4 "))
-    
+
+    (let ((u (alge " 3*x^4 + 5*x^2 + 7 ")))
+
+      (test-equal "MM: page 124"
+
+        (degree-gpe (polynomial-expansion u (alge " x^2 ") x t)
+                    '(t))
+        2)
+
+      (test-equal "MM: page 124"
+
+        (coefficient-gpe (polynomial-expansion u (alge " x^2 ") x t)
+                         t
+                         2)
+        3))
+
+    (let ()
+
+      (vars v)
+
+      (test-equal "MM: page 124"
+
+        (polynomial-expansion (alge " 2*x^4 + 4*x^3 + 9*x^2 + 7*x + 9 ")
+                              (alge " x^2 + x + 1 ")
+                              x
+                              v)
+
+        (alge " 2*v^2 + 3*v + 4 ")))
+
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     (test-end "mpl")

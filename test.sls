@@ -1146,6 +1146,14 @@
     ;; polynomial-gcd
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+    (test-equal "MM: Example 4.20"
+
+      (polynomial-gcd (alge " 2*x^3 + 12*x^2 + 22*x + 12 ")
+                      (alge " 2*x^3 + 18*x^2 + 52*x + 48 ")
+                      x)
+
+      (alge " x^2 + 5*x + 6 "))
+
     (test-equal "MM: Example 4.24"
 
       (polynomial-gcd (alge " x^7 - 4*x^5 - x^2 + 4 ")

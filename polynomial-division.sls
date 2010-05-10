@@ -1,7 +1,7 @@
 
 (library (mpl polynomial-division)
 
-  (export polynomial-division)
+  (export polynomial-division quotient remainder)
 
   (import (mpl rnrs-sans)
           (mpl arithmetic)
@@ -32,4 +32,10 @@
 
           (set! m (degree-gpe r (list x)))))
 
-      (list q r))))
+      (list q r)))
+
+  (define (quotient u v x)
+    (list-ref (polynomial-division u v x) 0))
+
+  (define (remainder u v x)
+    (list-ref (polynomial-division u v x) 1)))

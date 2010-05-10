@@ -46,7 +46,8 @@
           (mpl simplify-trig)
           (mpl derivative)
           (mpl polynomial-division)
-          (mpl polynomial-expansion))
+          (mpl polynomial-expansion)
+          (mpl polynomial-gcd))
 
   (define-syntax test-equal-anon
     (syntax-rules ()
@@ -1140,6 +1141,18 @@
                               v)
 
         (alge " 2*v^2 + 3*v + 4 ")))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; polynomial-gcd
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "MM: Example 4.24"
+
+      (polynomial-gcd (alge " x^7 - 4*x^5 - x^2 + 4 ")
+                      (alge " x^5 - 4*x^3 - x^2 + 4 ")
+                      x)
+
+      (alge " x^3 - x^2 - 4*x + 4 "))
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

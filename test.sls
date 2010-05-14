@@ -48,7 +48,8 @@
           (mpl polynomial-division)
           (mpl polynomial-expansion)
           (mpl polynomial-gcd)
-          (mpl extended-euclidean-algorithm))
+          (mpl extended-euclidean-algorithm)
+          (mpl alg-polynomial-division))
 
   (define-syntax test-equal-anon
     (syntax-rules ()
@@ -1176,6 +1177,21 @@
       (list (alge " x^3 - x^2 - 4*x + 4 ")
             (alge " -x ")
             (alge " x^3 + 1 ")))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; alg-polynomial-division
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    
+    (test-equal "MM: Example 4.50"
+
+      (alg-polynomial-division (alge " 2*x^2 + a*x ")
+                               (alge " a*x + a ")
+                               x
+                               (alge " a^2 - 2 ")
+                               a)
+
+      (list (alge " a*x + 1 - a ")
+            (alge " -a + 2 ")))
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

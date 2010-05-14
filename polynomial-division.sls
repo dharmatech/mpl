@@ -18,7 +18,8 @@
            (n (degree-gpe v (list x)))
            (lcv (leading-coefficient-gpe v x)))
 
-      (while (>= m n)
+      (while (and (>= m n)
+                  (not (equal? r 0))) ;; see footnote 2 page 115
 
         (let* ((lcr (leading-coefficient-gpe r x))
                (s (/ lcr lcv)))

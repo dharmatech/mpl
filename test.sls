@@ -1093,6 +1093,14 @@
 
       (list (alge " x + 3 ") 0))
 
+    (test-equal "MM: Example 4.43"
+
+      (remainder (alge " 3*x^3 + x^2 - 4 ")
+                 (alge " x^2 - 4*x + 2 ")
+                 x)
+
+      (alge " -30 + 46*x "))
+
     (test-equal "MM: Example 4.45"
 
       (let ()

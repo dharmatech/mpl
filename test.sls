@@ -50,7 +50,8 @@
           (mpl polynomial-gcd)
           (mpl extended-euclidean-algorithm)
           (mpl alg-polynomial-division)
-          (mpl alg-polynomial-gcd))
+          (mpl alg-polynomial-gcd)
+          (mpl partial-fraction-1))
 
   (define-syntax test-equal-anon
     (syntax-rules ()
@@ -1235,6 +1236,17 @@
                           a)
 
       (alge " x - 1 - a "))
+
+    ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    (test-equal "MM: Example 4.67"
+
+      (partial-fraction-1 (alge " x^2 + 2 ")
+                          (alge " x + 2 ")
+                          (alge " x^2 - 1 ")
+                          x)
+
+      (list 2 (alge " -x + 2 ")))
 
     ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

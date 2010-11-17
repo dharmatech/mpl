@@ -1,11 +1,11 @@
 #!r6rs
 
-(library (mpl misc equivalence)
+(library (mpl util equivalence)
 
  (export equal-to eq-to eqv-to)
 
  (import (rnrs)
-         (mpl misc extended-curry))
+         (mpl util extended-curry))
  
  (define equal-to (curry equal? a b))
 

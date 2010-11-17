@@ -1,10 +1,11 @@
+#!r6rs
 
 (library (mpl trig-substitute)
 
   (export trig-substitute)
 
   (import (mpl rnrs-sans)
-          (xitomatl AS-match)
+          (mpl util match)
           (mpl arithmetic)
           (mpl sin)
           (mpl cos))

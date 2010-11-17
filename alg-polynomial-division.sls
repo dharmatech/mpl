@@ -1,3 +1,4 @@
+#!r6rs
 
 (library (mpl alg-polynomial-division)
 

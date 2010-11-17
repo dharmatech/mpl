@@ -1,3 +1,4 @@
+#!r6rs
 
 (library (mpl test) 
 
@@ -6,7 +7,7 @@
   (import (mpl rnrs-sans)
           (only (surfage s1 lists) lset=)
           (surfage s64 testing)
-          (dharmalab infix alg)
+          (mpl util infix alg)
           (mpl misc)
           (mpl contains)
           (mpl sum-product-power)

@@ -1,3 +1,4 @@
+#!r6rs
 
 (library (mpl partial-fraction-1)
 

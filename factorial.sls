@@ -1,10 +1,11 @@
+#!r6rs
 
 (library (mpl factorial)
 
   (export ! simplify-factorial)
 
   (import (rename (rnrs) (- rnrs:-) (* rnrs:*))
-          (xitomatl AS-match))
+          (mpl util match))
 
   (define (factorial n)
     (if (= n 0)

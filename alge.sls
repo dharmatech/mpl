@@ -1,10 +1,11 @@
+#!r6rs
 
 (library (mpl alge)
 
   (export alge)
 
   (import (rnrs)
-          (dharmalab infix alg)
+          (mpl util infix alg)
           (mpl automatic-simplify))
 
   (define (alge val)

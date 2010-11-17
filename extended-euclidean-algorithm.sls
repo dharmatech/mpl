@@ -1,3 +1,4 @@
+#!r6rs
 
 (library (mpl extended-euclidean-algorithm)
 

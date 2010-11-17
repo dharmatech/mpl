@@ -1,10 +1,11 @@
+#!r6rs
 
 (library (mpl tan)
 
   (export tan)
 
   (import (mpl rnrs-sans)
-          (xitomatl AS-match)
+          (mpl util match)
           (mpl arithmetic))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

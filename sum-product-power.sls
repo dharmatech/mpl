@@ -1,3 +1,4 @@
+#!r6rs
 
 (library (mpl sum-product-power)
 
@@ -7,9 +8,9 @@
           simplify-power)
 
   (import (rename (rnrs) (+ rnrs:+) (* rnrs:*))
-          (xitomatl AS-match)
-          (dharmalab misc equivalence)
-          (dharmalab misc list)
+          (mpl util match)
+          (mpl util equivalence)
+          (mpl util list)
           (mpl order-relation))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

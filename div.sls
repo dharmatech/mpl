@@ -1,10 +1,11 @@
+#!r6rs
 
 (library (mpl div)
 
   (export / simplify-quotient)
 
   (import (except (rnrs) + - * /)
-          (xitomatl AS-match)
+          (mpl util match)
           (mpl sum-product-power))
 
   (define (simplify-quotient u)

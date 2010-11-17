@@ -1,3 +1,4 @@
+#!r6rs
 
 (library (mpl denominator)
 
@@ -5,7 +6,7 @@
 
   (import (mpl rnrs-sans)
           (rename (only (rnrs) denominator) (denominator rnrs:denominator))
-          (xitomatl AS-match)
+          (mpl util match)
           (mpl arithmetic))
 
   (define (denominator u)

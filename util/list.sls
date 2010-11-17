@@ -1,5 +1,6 @@
+#!r6rs
 
-(library (dharmalab misc list)
+(library (mpl util list)
 
   (export all-are all-of any-are any-of list-tabulate
           list-map-indices-reversed
@@ -10,7 +11,7 @@
           list-sum-head)
 
   (import (rnrs)
-          (dharmalab misc extended-curry))
+          (mpl util extended-curry))
   
   (define all-are (curry for-all a b)) ;; (all-are <pred>) -> (<proc> <list>)
   (define all-of  (curry for-all b a)) ;; (all-of  <list>) -> (<proc> <pred>)

@@ -1,3 +1,4 @@
+#!r6rs
 
 ;; (rnrs) minus items which conflict with procedures provided by mpl
 

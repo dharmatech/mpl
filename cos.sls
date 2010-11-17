@@ -1,3 +1,4 @@
+#!r6rs
 
 (library (mpl cos)
 
@@ -5,7 +6,7 @@
 
   (import (mpl rnrs-sans)
           (rename (only (rnrs) cos) (cos rnrs:cos))
-          (xitomatl AS-match)
+          (mpl util match)
           (mpl arithmetic)
           (mpl numerator)
           (mpl denominator)

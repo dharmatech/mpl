@@ -1,10 +1,11 @@
+#!r6rs
 
 (library (mpl sub)
 
   (export - simplify-difference)
 
   (import (except (rnrs) + * -)
-          (xitomatl AS-match)
+          (mpl util match)
           (mpl sum-product-power))
 
   (define (simplify-difference u)

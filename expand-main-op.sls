@@ -1,10 +1,11 @@
+#!r6rs
 
 (library (mpl expand-main-op)
 
   (export expand-main-op)
 
   (import (mpl rnrs-sans)
-          (xitomatl AS-match)
+          (mpl util match)
           (mpl arithmetic)
           (mpl misc)
           (mpl expand-product)

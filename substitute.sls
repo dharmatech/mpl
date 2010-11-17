@@ -1,3 +1,4 @@
+#!r6rs
 
 (library (mpl substitute)
 
@@ -8,7 +9,7 @@
           concurrent-substitute)
 
   (import (rnrs)
-          (xitomatl AS-match)
+          (mpl util match)
           (mpl automatic-simplify))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

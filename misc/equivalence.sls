@@ -1,10 +1,12 @@
+#!r6rs
 
-(library (dharmalab misc equivalence)
+(library (mpl misc equivalence)
 
  (export equal-to eq-to eqv-to)
 
- (import (rnrs) (dharmalab misc extended-curry))
-  
+ (import (rnrs)
+         (mpl misc extended-curry))
+ 
  (define equal-to (curry equal? a b))
 
  (define eq-to (curry equal? a b))

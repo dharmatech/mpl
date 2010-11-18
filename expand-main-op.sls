@@ -5,7 +5,7 @@
   (export expand-main-op)
 
   (import (mpl rnrs-sans)
-          (mpl util match)
+          (mpl match)
           (mpl arithmetic)
           (mpl misc)
           (mpl expand-product)

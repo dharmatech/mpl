@@ -5,7 +5,7 @@
   (export tan)
 
   (import (mpl rnrs-sans)
-          (mpl util match)
+          (mpl match)
           (mpl arithmetic))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

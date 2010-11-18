@@ -9,7 +9,7 @@
           concurrent-substitute)
 
   (import (rnrs)
-          (mpl util match)
+          (mpl match)
           (mpl automatic-simplify))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

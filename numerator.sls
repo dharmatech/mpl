@@ -6,7 +6,7 @@
 
   (import (mpl rnrs-sans)
           (rename (only (rnrs) numerator) (numerator rnrs:numerator))
-          (mpl util match)
+          (mpl match)
           (mpl arithmetic))
 
   (define (numerator u)

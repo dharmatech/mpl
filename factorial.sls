@@ -5,7 +5,7 @@
   (export ! simplify-factorial)
 
   (import (rename (rnrs) (- rnrs:-) (* rnrs:*))
-          (mpl util match))
+          (mpl match))
 
   (define (factorial n)
     (if (= n 0)

@@ -6,7 +6,7 @@
 
   (import (mpl rnrs-sans)
           (rename (only (rnrs) sin) (sin rnrs:sin))
-          (mpl util match)
+          (mpl match)
           (mpl arithmetic)
           (mpl numerator)
           (mpl denominator)

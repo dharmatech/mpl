@@ -5,7 +5,7 @@
   (export alge)
 
   (import (rnrs)
-          (mpl util infix alg)
+          (dharmalab infix alg)
           (mpl automatic-simplify))
 
   (define (alge val)

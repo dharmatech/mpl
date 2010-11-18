@@ -8,9 +8,9 @@
           simplify-power)
 
   (import (rename (rnrs) (+ rnrs:+) (* rnrs:*))
-          (mpl util match)
-          (mpl util equivalence)
-          (mpl util list)
+          (mpl match)
+          (dharmalab misc equivalence)
+          (dharmalab misc list)
           (mpl order-relation))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

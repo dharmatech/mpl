@@ -5,7 +5,7 @@
   (export trig-substitute)
 
   (import (mpl rnrs-sans)
-          (mpl util match)
+          (mpl match)
           (mpl arithmetic)
           (mpl sin)
           (mpl cos))

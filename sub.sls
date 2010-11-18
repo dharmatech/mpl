@@ -5,7 +5,7 @@
   (export - simplify-difference)
 
   (import (except (rnrs) + * -)
-          (mpl util match)
+          (mpl match)
           (mpl sum-product-power))
 
   (define (simplify-difference u)

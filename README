@@ -5,8 +5,6 @@
 
     $ git clone git://github.com/dharmatech/surfage.git
 
-    $ bzr branch lp:~derick-eddington/scheme-libraries/xitomatl
-
     $ git clone git://github.com/dharmatech/dharmalab.git
 
     $ git clone git://github.com/dharmatech/mpl.git

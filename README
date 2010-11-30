@@ -11,7 +11,14 @@
 
 * Running the unit tests
 
-    $ ikarus --r6rs-script ~/mpl/test.sps
+    $ ikarus --r6rs-script test.sps
+
+The unit tests have been run successfully in:
+
+    Ikarus (development version)
+    Chez 8.0
+    Ypsilon (development version)
+    Racket 5.0.2
 
 * About
 

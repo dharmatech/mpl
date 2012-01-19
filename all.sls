@@ -4,6 +4,7 @@
 
   (export + - * / ^
 	  sqrt
+	  vars
 	  alge
 	  substitute
 	  collect-terms

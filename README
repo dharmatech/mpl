@@ -35,3 +35,29 @@ by Joel S. Cohen.
 See 'test.sls' for examples.
 
 See 'mpl.org' for more information.
+
+* A couple of essential libraries
+
+library: (mpl rnrs-sans)
+
+Exports all of '(rnrs)' except for procedures which conflict with
+those provided by the mpl libraries.
+
+So basically, if you usually begin your R6RS code by importing
+'(rnrs)' and you'd like to make use of the MPL libraries without
+having to worry about naming conflicts, import '(mpl rnrs-sans)'
+instead.
+
+
+library: (mpl all)
+
+Exports the commonly used procedures and macros offered by MPL.
+
+It is generally the case each MPL component is defined in it's own
+library. For example, the the library '(mpl algebraic-expand)' exports
+the single procedure 'algebraic-expand'. When designing R6RS libraries
+which make use of MPL libraries, many users will choose to import
+individual MPL libraries a la carte. However, when you're
+experimenting at a REPL, it can get tedious to import the libraries
+individually. Thus the '(mpl all)' library is provided so that you can
+get the common parts of MPL in one import.

@@ -13,7 +13,7 @@
           inexact-number?)
 
   (import (rnrs)
-          (xitomatl AS-match))
+          (mpl match))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

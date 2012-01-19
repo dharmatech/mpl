@@ -11,7 +11,7 @@
           order-relation)
 
   (import (rnrs)
-          (xitomatl AS-match)
+          (mpl match)
           (except (mpl misc) base exponent))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

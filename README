@@ -1,4 +1,3 @@
-
 * Setup
 
     $ cd ~/scheme # Or wherever you keep your Scheme libraries
@@ -34,7 +33,7 @@ by Joel S. Cohen.
 
 See 'test.sls' for examples.
 
-See 'mpl.org' for more information.
+See the file 'mpl.org' for more information.
 
 * A couple of essential libraries
 

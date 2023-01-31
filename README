@@ -2,11 +2,11 @@
 
     $ cd ~/scheme # Or wherever you keep your Scheme libraries
 
-    $ git clone git://github.com/dharmatech/surfage.git
+    $ git clone git@github.com:dharmatech/surfage.git
 
-    $ git clone git://github.com/dharmatech/dharmalab.git
+    $ git clone git@github.com:dharmatech/dharmalab.git
 
-    $ git clone git://github.com/dharmatech/mpl.git
+    $ git clone git@github.com:dharmatech/mpl.git
 
 * Running the unit tests
 
